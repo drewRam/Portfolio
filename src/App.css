@@ -1,38 +1,44 @@
-.App {
-  text-align: center;
+:root{
+  --hamburger-gap: 5px;
+  --bar-width: 60px;
+  --bar-height: 8px;
 }
 
-.App-logo {
-  height: 40vmin;
+.hamburger-menu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hamburger-gap);
+  width: max-content;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 999999;
+  cursor: pointer;
+  background-color: red;
+}
+
+.hamburger-menu::before,
+.hamburger-menu::after,
+.hamburger-menu input {
+  content: "";
+  width: var(--bar-width);
+  height: var(--bar-height);
+  background-color: gray;
+  border-radius: 10px;
+}
+
+.hamburger-menu input {
+  appearance: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.hamburger-menu:has(input:checked)::before {
+  transform: translateY(calc(var(--bar-height) + var(--hamburger-gap)));
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.hamburger-menu input:checked {
+  background-color: blue;
 }
