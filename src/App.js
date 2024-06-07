@@ -1,11 +1,12 @@
 import './App.css';
+// import Spotify from './screens/Spotify';
+// import Starbucks from './screens/Starbucks';
+import Nft from './screens/Nft';
 
 const App = () => {
   return (
     <>
-      <label className="hamburger-menu">
-        <input type="checkbox" />
-        </label>
+      <Nft />
     </>
   );
 }
