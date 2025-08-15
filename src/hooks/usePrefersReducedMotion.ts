@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
  * Custom hook to detect if the user prefers reduced motion.
  * Returns `true` if the OS/browser setting prefers reduced motion.
  */
-export const usePrefersReducedMotion = (): boolean => {
+const usePrefersReducedMotion = (): boolean => {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
@@ -31,3 +31,5 @@ export const usePrefersReducedMotion = (): boolean => {
 
   return prefersReducedMotion;
 };
+
+export default usePrefersReducedMotion;
