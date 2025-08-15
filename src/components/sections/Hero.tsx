@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, ReactNode } from "react";
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import "./Hero.css";
 import { navDelay, loaderDelay } from "../../utils/index";
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
+import "./Hero.css";
 
 interface HeroItem {
   node: ReactNode;

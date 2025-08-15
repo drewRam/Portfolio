@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Icon from "../icons/IconSelector";
+import  "./Footer.css";
 
 interface GithubInfo {
     stars: number | null,
@@ -44,9 +46,16 @@ const Footer = () => {
         <>
             <a href="https://github.com/drewRam">
                 <div>Designed &amp; Built by Andrew Ramirez</div>
-
-                <span>stars: {githubInfo.stars?.toLocaleString()}</span>
-                <span>forks: {githubInfo.forks?.toLocaleString()}</span>
+                <div className="github-stats">
+                    <span>
+                        <Icon name="Star" />
+                        <span>stars: {githubInfo.stars?.toLocaleString()}</span>
+                    </span>
+                    <span>
+                        <Icon name="Fork" />
+                        <span>forks: {githubInfo.forks?.toLocaleString()}</span>
+                    </span>
+                </div>
             </a>
         </>
     );
