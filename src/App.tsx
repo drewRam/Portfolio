@@ -1,10 +1,14 @@
 // import './App.css';
-import HomeScreen from './pages/HomeScreen';
+import NavBar from './components/NavBar';
+import Hero from './components/sections/Hero';
+import Footer from './components/sections/Footer';
 
 const App = () => {
   return (
     <>
-      <HomeScreen></HomeScreen>
+      <NavBar/>
+      <Hero/>
+      <Footer />
     </>
   );
 }

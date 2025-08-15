@@ -1,0 +1,72 @@
+.hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 100vh;
+  height: 100vh;
+  padding: 0;
+}
+
+@media (max-height: 700px) and (min-width: 700px),
+       (max-width: 360px) {
+  .hero-section {
+    height: auto;
+    padding-top: var(--nav-height);
+  }
+}
+
+.hero-section h1 {
+  margin: 0 0 30px 4px;
+  color: var(--green);
+  font-family: var(--font-mono);
+  font-size: clamp(var(--fz-sm), 5vw, var(--fz-md));
+  font-weight: 400;
+}
+
+@media (max-width: 480px) {
+  .hero-section h1 {
+    margin: 0 0 20px 2px;
+  }
+}
+
+.hero-section h3 {
+  margin-top: 5px;
+  color: var(--slate);
+  line-height: 0.9;
+}
+
+.hero-section p {
+  margin: 20px 0 0;
+  max-width: 540px;
+}
+
+.hero-section .email-link {
+  margin-top: 50px;
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--green);
+  color: var(--green);
+  background: transparent;
+  text-decoration: none;
+  font-size: var(--fz-sm);
+  font-family: var(--font-mono);
+  border-radius: var(--border-radius);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.hero-section .email-link:hover {
+  background: var(--green-tint);
+  color: var(--navy);
+}
+
+.fadeup-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.fadeup-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease-out, transform 300ms ease-out;
+}
