@@ -1,14 +1,15 @@
-// import './App.css';
 import NavBar from './components/NavBar';
-import Hero from './components/sections/Hero';
-import Footer from './components/sections/Footer';
+import { GlobalStyle } from 'styles';
+import { Layout, Hero } from 'components';
 
 const App = () => {
   return (
     <>
+      <GlobalStyle />
       <NavBar/>
-      <Hero/>
-      <Footer />
+      <Layout>
+        <Hero></Hero>
+      </Layout>
     </>
   );
 }

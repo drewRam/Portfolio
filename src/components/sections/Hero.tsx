@@ -5,16 +5,16 @@ import { usePrefersReducedMotion } from "../../hooks";
 import styled from "styled-components";
 
 const StyledHeroElement = styled.section`
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    ${({ theme }) => theme.flexCenter };
+    border: 1px solid green;
+
     flex-direction: column;
+    align-items: flex-start;
     min-height: 100vh;
     height: 100vh;
     padding: 0;
 
-    @media (max-height: 700px) and (min-width: 700px),
-            (max-width: 360px) {
+    @media (max-height: 700px) and (min-width: 700px), (max-width: 360px) {
         height: auto;
         padding-top: var(--nav-height);
     }
@@ -42,23 +42,6 @@ const StyledHeroElement = styled.section`
         max-width: 540px;
     }
 
-    .email-link {
-        margin-top: 50px;
-        padding: 1rem 1.5rem;
-        border: 1px solid var(--green);
-        color: var(--green);
-        background: transparent;
-        text-decoration: none;
-        font-size: var(--fz-sm);
-        font-family: var(--font-mono);
-        border-radius: var(--border-radius);
-        transition: background 0.3s ease, color 0.3s ease;
-
-        &:hover {
-        background: var(--green-tint);
-        color: var(--navy);
-        }
-    }
 
     /* Animation classes */
     .fadeup-enter {
@@ -98,11 +81,17 @@ const Hero: React.FC = () => {
     const items: HeroItem[] = [
         { node: <h1>Hi, my name is</h1>, ref: oneRef },
         { node: <h2 className="big-heading">Andrew Ramirez.</h2>, ref: twoRef },
-        { node: <h3 className="big-heading">I build things for the web.</h3>, ref: threeRef },
+        { node: <h3 className="big-heading">Full-stack dev, crafting interactive experiences.</h3>, ref: threeRef },
         { node: (
-        <p>
-            I'm a software engineer... <a href="https://google.com/" target="_blank" rel="noreferrer">Google</a>.
-        </p>
+        <>
+            <p>
+                I'm a software engineer and an indie game developer at heart.
+                Independently develop games,
+                combining programming and animation to create engaging interactive experiences.
+                Please check my game development site as well
+                <a href="https://google.com/" target="_blank" rel="noreferrer">site here</a>
+            </p>
+        </>
         ), ref: fourRef }
     ];
 

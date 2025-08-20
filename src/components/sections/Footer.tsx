@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { config } from "config";
 import Icon from "../icons/IconSelector";
-import  "./Footer.css";
 
 interface GithubInfo {
     stars: number | null,
@@ -25,10 +25,14 @@ const Footer = () => {
 
         const fetchRepoStats = async () => {
         try {
-            const res = await axios.get<GithubApiResponse>(
-                "https://api.github.com/repos/drewRam/website_resume",
-                { signal: controller.signal }
-            );
+            // Extract username and optional repo from the URL
+            const githubUrl = config.socialMedia.find(link => link.name === "GitHub")?.url || "";
+            const username = githubUrl.match(/github\.com\/([^/]+)/)?.[1] || "";
+            const repoName = config.githubRepo;
+
+            const apiUrl = `https://api.github.com/repos/${username}/${repoName}`;
+
+            const res = await axios.get<GithubApiResponse>(apiUrl, { signal: controller.signal });
 
             setGithubInfo({
                 stars: res.data.stargazers_count,
@@ -51,7 +55,7 @@ const Footer = () => {
 
     return (
         <>
-            <a href="https://github.com/drewRam">
+            <a href={config.socialMedia.find(link => link.name === "GitHub")?.url}>
                 <div>Designed &amp; Built by Andrew Ramirez</div>
                 <div className="github-stats">
                     <span>
