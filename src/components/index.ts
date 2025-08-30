@@ -5,3 +5,7 @@ export { default as Experience } from "./sections/Experience";
 export { default as Contact } from "./sections/Contact";
 export { default as ContactPanel } from "./layouts/ContactPanel";
 export { default as Footer } from "./layouts/Footer";
+export { default as NavBar } from  "./layouts/NavBar";
+export { default as Icon } from "./icons/IconSelector";
+export { default as Social } from "./layouts/Social";
+export { default as Email } from "./layouts/Email";

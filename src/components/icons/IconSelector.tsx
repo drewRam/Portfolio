@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconGitHub, IconStar, IconFork } from './Icons';
+import { IconGitHub, IconStar, IconFork, IconLinkedin } from './Icons';
 
 interface IconProps {
   name: string;
@@ -7,8 +7,9 @@ interface IconProps {
 
 const IconMap: Record<string, React.FC> = {
     Fork: IconFork,
-    Github: IconGitHub,
+    GitHub: IconGitHub,
     Star: IconStar,
+    Linkedin: IconLinkedin,
 };
 
 const Icon: React.FC<IconProps> = ({ name }) => {

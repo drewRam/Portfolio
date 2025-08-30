@@ -1,12 +1,13 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState, useEffect } from "react";
 import styled from "styled-components";
+import { loaderDelay } from "utils";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
-
-interface StyledControlPanelElementProps {
+interface StyledControlPanelProps {
   orientation: 'left' | 'right';
 }
 
-const StyledControlPanelElement = styled.div<StyledControlPanelElementProps>`
+const StyledControlPanel = styled.div<StyledControlPanelProps>`
     width: 40px;
     position: fixed;
     bottom: 0;
@@ -27,14 +28,32 @@ const StyledControlPanelElement = styled.div<StyledControlPanelElementProps>`
 
 interface ContactPanelProps {
     children: ReactNode,
+    isHome: Boolean,
     orientation: "left" | "right";
 }
 
-const ContactPanel: React.FC<ContactPanelProps> = ({ children, orientation }) => {
+const ContactPanel: React.FC<ContactPanelProps> = ({ children, isHome, orientation }) => {
+    const [mounted, setMounted] = useState<Boolean>(!isHome);
+    
+    useEffect(() => {
+        if (!isHome) {
+            return;
+        }
+
+        const timeout = setTimeout(() => setMounted(true), loaderDelay);
+        return () => clearTimeout(timeout);
+    }, []);
+
     return (
-        <StyledControlPanelElement orientation={orientation}>
-            {children}
-        </StyledControlPanelElement>
+        <StyledControlPanel orientation={orientation}>
+            <TransitionGroup component={null}>
+                {mounted && (
+                    <CSSTransition classNames={isHome ? "fade" : ""} timeout={isHome ? loaderDelay : 0}>
+                        {children}
+                    </CSSTransition>
+                )}
+            </TransitionGroup>
+        </StyledControlPanel>
     );
 };
 

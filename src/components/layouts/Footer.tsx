@@ -7,8 +7,8 @@ import styled from "styled-components";
 const StyledFooter = styled.footer`
     ${({ theme }) => theme.flexCenter};
     flex-direction: column;
-    height: auto'
-    min-height: 20px
+    height: "auto";
+    min-height: 20px;
     padding: 15px;
     text-align: center;
 `;
@@ -136,10 +136,6 @@ const Footer: React.FC = () => {
                     <div>Designed &amp; Built by Andrew Ramirez</div>
                     {githubInfo.stars !== null && githubInfo.forks !== null && (
                         <div className="github-stats">
-
-
-
-                            
                         <span>
                             <Icon name="Star" />
                             <span>{githubInfo.stars.toLocaleString()}</span>
