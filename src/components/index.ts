@@ -1,3 +1,7 @@
-export { default as ContactPanel } from "./ContactPanel";
-export { default as Hero } from "./sections/Hero";
 export { default as Layout } from "./layouts/Layout";
+export { default as Hero } from "./sections/Hero";
+export { default as About } from "./sections/About";
+export { default as Experience } from "./sections/Experience";
+export { default as Contact } from "./sections/Contact";
+export { default as ContactPanel } from "./layouts/ContactPanel";
+export { default as Footer } from "./layouts/Footer";

@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import { usePrefersReducedMotion } from "hooks";
 import styled from "styled-components";
 
 

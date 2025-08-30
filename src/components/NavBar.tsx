@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useScrollDirection } from 'hooks';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { config, NavigationLinks } from 'config';
+import { useScrollDirection } from 'hooks';
+import { loaderDelay } from 'utils';
 
 const { navigationLinks }: { navigationLinks: NavigationLinks[] } = config;
 
-// interface StyledHeaderProps {
-//   scrollDirection: "up" | "down",
-//   scrolledToTop: boolean,
-//   mounted: boolean,
-// }
+interface StyledHeaderProps {
+  scrollDirection: "up" | "down",
+  scrolledToTop: boolean,
+  mounted: boolean,
+}
 
 // <StyledHeaderProps>`
-const StyledHeader = styled.header`
-  display: flex;
-  align-items: center;
-
+const StyledHeader = styled.header<StyledHeaderProps>`
+  ${({ theme }) => theme.flexBetween };
   position: fixed;
   top: 0;
   z-index: 10;
-
+  padding: 0px 50px;
   width: 100%;
   height: var(--nav-height);
 
@@ -27,80 +27,89 @@ const StyledHeader = styled.header`
 `;
 
 const StyledNavigation = styled.nav`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  ${({ theme }) => theme.flexBetween };
+  position: relative;
   width: 100%;
-  color: #ccd6f6;
+  color: var(--lightest-slate);
   font-family: 'Fira Code', monospace;
-  border: 2px solid black;
+  font-family: var(--font-mono);
+  z-index: 11;
+  // border: 2px solid black;
 `;
 
 const StyledNavigationList = styled.div`
-  margin-left: auto;
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
   
   ul {
-    display: flex;
+    ${({ theme }) => theme.flexBetween };
+    padding: 0;
+    margin: 0;
     list-style: none;
-    border: 2px solid red;
-    gap: 20px;
+    // border: 2px solid red;
 
     li {
       margin: 0 5px;
       position: relative;
-      border: 2px solid green;
+      font-size: var(--fz-xs);
+      // border: 2px solid green;
 
       a {
-        text-decoration: none;
-        text-align: right;
-        color: #ccd6f6;
-
-        &:visited {
-          color: #ccd6f6;
-        }
-
-        &:hover {
-          color: #64ffda;
-        }
-
-        &:active {
-          color: #ccd6f6; 
-        }
+        padding: 10px;
       }
     }
   }
 `;
 
 const NavBar = () => {
-  // const [scrolledToTop, setScrolledToTop] = useState(true);
-  // const [mounted, setMounted] = useState<boolean>(false);
-  // const scrollDirection = useScrollDirection({ initialDirection: "down" });
+  const [scrolledToTop, setScrolledToTop] = useState(true);
+  const [mounted, setMounted] = useState<boolean>(false);
+  const scrollDirection = useScrollDirection({ initialDirection: "down" });
+
+  const timeout = true ? loaderDelay : 0;
+  const fadeClass = true ? 'fade' : '';
+  const fadeDownClass = true ? 'fadedown' : '';
   
   useEffect(() => {
-    // const handleScroll = () => {
-    //   setScrolledToTop(window.scrollY < 50);
-    // };
+    const handleScroll = () => {
+      setScrolledToTop(window.scrollY < 50);
+    };
   
-    // window.addEventListener("scroll", handleScroll);
-    // setMounted(true); 
+    window.addEventListener("scroll", handleScroll);
+    setMounted(true); 
     
-    // return () => window.removeEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
     // eslint-disable-next-line
   }, []);
 
   return (
-    <StyledHeader> {/* scrollDirection={scrollDirection} scrolledToTop={scrolledToTop} mounted={mounted}> */}
+    <StyledHeader scrollDirection={scrollDirection} scrolledToTop={scrolledToTop} mounted={mounted}> 
       <StyledNavigation>
-        <div>
-          <a href='/'>a logo here</a>
-        </div>
+        <TransitionGroup component={null}>
+          {mounted && (
+            <CSSTransition classNames={fadeClass} timeout={timeout}>
+              <div>
+                <a href='/'>a logo here</a>
+              </div>
+            </CSSTransition>
+          )}
+        </TransitionGroup>
         <StyledNavigationList>
           <ul>
-              {navigationLinks.map(({url, name}, i) => (
-                  <li key={i}>
-                    <a href={url}>{name}</a>
-                  </li>
+            <TransitionGroup component={null}>
+              {mounted && 
+                navigationLinks.map(({url, name}, i) => (
+                  <CSSTransition key={url} classNames={fadeDownClass} timeout={timeout}>
+                    <li key={i} style={{ transitionDelay: `${(i + 1) * 100}ms` }}>
+                      <a href={url}>{name}</a>
+                    </li>
+                  </CSSTransition>
               ))}
+            </TransitionGroup>
           </ul>
         </StyledNavigationList>
       </StyledNavigation>

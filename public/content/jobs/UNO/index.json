@@ -1,0 +1,14 @@
+{
+  "title": "Web Developer",
+  "company": "University of Nebraska Omaha",
+  "location": "Remote",
+  "range": "Oct 2021 – Dec 2022",
+  "url": "https://www.unomaha.edu/",
+  "bullets": [
+    "Built and maintained responsive single-page applications in Vue.js and Angular, integrating seamlessly with AWS-hosted RESTful APIs and backend services.",
+    "Developed Node.js-based backend services to handle data processing, authentication, and business logic, improving application scalability.",
+    "Optimized complex SQL queries and database interactions for faster page loads and improved reporting capabilities.",
+    "Collaborated with UX/UI teams to design interactive prototypes, conduct usability testing, and implement accessible front-end features.",
+    "Implemented version control workflows with Git and CI/CD pipelines to streamline deployments."
+  ]
+}

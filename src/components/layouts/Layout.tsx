@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
-import styled, { ThemeProvider } from "styled-components";
-import { theme } from "../../styles";
+import styled from "styled-components";
+import { Footer } from "components";
 
 const StyledLayout = styled.div`
     display:flex;
@@ -15,13 +15,12 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
     return (
         <>
-        <ThemeProvider theme={theme}>
             <StyledLayout>
                 <div>
                     {children}
+                    <Footer />
                 </div>
             </StyledLayout>
-        </ThemeProvider>
         </>
     );
 };

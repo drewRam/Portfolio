@@ -1,0 +1,13 @@
+{
+  "title": "Lead Full Stack",
+  "company": "Prosearch",
+  "location": "Remote",
+  "range": "Jan 2023 – Apr 2025",
+  "url": "https://prosearch.com",
+  "bullets": [
+    "Architected and delivered scalable, multi-tenant web applications, integrating secure Microsoft Graph API data pipelines with modern front-end experiences in React Typescript.",
+    "Designed and implemented RESTful APIs and microservices in Node.js, optimizing data access and improving response times for high-volume workloads.",
+    "Developed responsive, accessible UI components using React hooks, Context API, and modular styling, ensuring consistent user experiences across platforms.",
+    "Mentored developers through code reviews, technical workshops, and architectural guidance, fostering a high-performing, collaborative engineering culture."
+  ]
+}
