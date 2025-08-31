@@ -9,7 +9,7 @@ const StyledHeroSection = styled.section`
     align-items: flex-start;
     min-height: 100vh;
     height: 100vh;
-    padding: 0;
+    padding-top: 0;
 
     @media (max-height: 700px) and (min-width: 700px), (max-width: 360px) {
         height: auto;
@@ -31,7 +31,7 @@ const StyledHeroSection = styled.section`
     h3 {
         margin-top: 5px;
         color: var(--slate);
-        line-height: 1.1;
+        line-height: 0.9;
     }
 
     p {
@@ -71,7 +71,7 @@ const Hero: React.FC = () => {
     }, []);
 
     const items: HeroItem[] = [
-        { node: <h1>Hi, my name is</h1>, ref: oneRef },
+        { node: <h1>Hello, my name is</h1>, ref: oneRef },
         { node: <h2 className="big-heading">Andrew Ramirez.</h2>, ref: twoRef },
         { node: <h3 className="big-heading">Full-stack dev, crafting interactive experiences.</h3>, ref: threeRef },
         { node: (

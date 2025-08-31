@@ -19,6 +19,7 @@ const variables = css`
 
         
         --nav-height: 100px;
+        --nav-scroll-height: 70px;
         --border-radius: 4px;
 
         --tab-height: 42px;
@@ -35,8 +36,6 @@ const variables = css`
         --fz-lg: 18px;
         --fz-xxl: 22px;
         --fz-heading: 32px;
-
-        --border-radius: 4px;
 
         --easing: cubic-bezier(0.645, 0.045, 0.355, 1);
         --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
