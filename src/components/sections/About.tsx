@@ -46,6 +46,16 @@ const StyledText = styled.div`
     }
 `;
 
+const StyledPic = styled.div`
+    position: relative;
+    max-width: 300px;
+
+    @media (max-width: 768px) {
+        margin: 50px auto 0;
+        width: 70%;
+    }
+`;
+
 const About: React.FC = () => {
   const revealContainer = useRef(null);
   
@@ -79,6 +89,9 @@ const About: React.FC = () => {
                         </p>
                     </div>
                 </StyledText>
+                <StyledPic>
+                    <img src={require("../images/Me.jpeg")} alt="Headshot" width={350} />
+                </StyledPic>
             </div>
         </StyledAboutSection>
     );

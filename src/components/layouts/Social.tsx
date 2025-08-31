@@ -40,6 +40,22 @@ const StyledSocialList = styled.ul`
     }
 `;
 
+const IconRing = styled.div`
+    ${({theme}) => theme.flexCenter}
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #ffffffff; // ring color
+    background-color: transparent; // body shows through
+    transition: transform 0.2s, border-color 0.2s;
+
+    &:hover, &:focus {
+        transform: translateY(-3px);
+        border-color: #555; // change ring color on hover
+    }
+`;
+
+
 interface SocialProps {
   isHome: boolean;
 }
@@ -51,7 +67,9 @@ const Social: React.FC<SocialProps> = ({ isHome }) => (
             config.socialMedia.map(({ url, name }, i) => (
                 <li key={i}>
                     <a href={url} aria-label={name} target="_blank" rel="noreferrer">
-                        <Icon name={name} />
+                        <IconRing>
+                            <Icon name={name} />
+                        </IconRing>
                     </a>
                 </li>
             ))}

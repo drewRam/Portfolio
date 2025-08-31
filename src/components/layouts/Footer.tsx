@@ -68,6 +68,24 @@ const StyledCredit = styled.div`
     }
 `;
 
+const IconRing = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--light-slate);
+  background-color: transparent;
+  transition: transform 0.2s, border-color 0.2s;
+
+  &:hover,
+  &:focus {
+    transform: translateY(-3px);
+    border-color: var(--slate);
+  }
+`;
+
 interface GithubInfo {
     stars: number | null,
     forks: number | null,
@@ -125,7 +143,9 @@ const Footer: React.FC = () => {
                     {config.socialMedia.map(({ name, url }, i) => (
                         <li key={i}>
                             <a href={url} aria-label={name} target="_blank" rel="noreferrer">
-                                <Icon name={name} />
+                                <IconRing>
+                                    <Icon name={name} />
+                                </IconRing>
                             </a>
                         </li>
                     ))}

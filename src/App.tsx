@@ -1,7 +1,6 @@
 /**
  * 
- * This project uses CSS/styling adapted from [Brittany Chiang's website](https://github.com/bchiang7).  
- * Thank you to Brittany for making the original code open-source.
+ * This project uses CSS/styling adapted from [Brittany Chiang's website](https://github.com/bchiang7).
  * 
  */
 

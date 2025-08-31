@@ -14,7 +14,7 @@ const StyledControlPanel = styled.div<StyledControlPanelProps>`
     left: ${props => (props.orientation === 'left' ? '40px' : 'auto')};
     right: ${props => (props.orientation === 'left' ? 'auto' : '40px')};
     z-index: 10;
-    color: var(--light-slate);
+    color: var(--light-slate); // Icons color
 
     @media (max-width: 1080px) {
         left: ${props => (props.orientation === 'left' ? '20px' : 'auto')};
