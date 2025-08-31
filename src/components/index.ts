@@ -9,3 +9,4 @@ export { default as NavBar } from  "./layouts/NavBar";
 export { default as Icon } from "./icons/IconSelector";
 export { default as Social } from "./layouts/Social";
 export { default as Email } from "./layouts/Email";
+export { default as Head } from "./layouts/Head";

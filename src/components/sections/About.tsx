@@ -46,8 +46,9 @@ const StyledText = styled.div`
     }
 `;
 
-const About = () => {
+const About: React.FC = () => {
   const revealContainer = useRef(null);
+  
     useEffect(() => {
         sr!.reveal(revealContainer.current!, config.srConfig());
     }, []);

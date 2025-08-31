@@ -133,7 +133,7 @@ const Footer: React.FC = () => {
             </StyledSocialLinks>
             <StyledCredit tabIndex={-1}>
                 <a href={config.socialMedia.find(link => link.name === "GitHub")?.url}>
-                    <div>Designed &amp; Built by Andrew Ramirez</div>
+                    <div>Built by Andrew Ramirez</div>
                     {githubInfo.stars !== null && githubInfo.forks !== null && (
                         <div className="github-stats">
                         <span>

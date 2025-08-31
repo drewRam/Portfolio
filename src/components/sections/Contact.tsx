@@ -40,8 +40,8 @@ const StyledContactSection = styled.section`
   }
 `;
 
-const Contact = () => {
-    const revealContainer = useRef(null);
+const Contact: React.FC = () => {
+    const revealContainer = useRef<HTMLElement | null>(null);
 
     useEffect(() => {
         sr!.reveal(revealContainer.current!, config.srConfig());

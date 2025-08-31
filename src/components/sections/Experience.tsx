@@ -177,7 +177,7 @@ type Job = {
   folder?: string;
 };
 
-const Experience = () => {
+const Experience: React.FC = () => {
   const [jobsData, setJobsData] = useState<Job[]>([]);
   const [activeTabId, setActiveTabId] = useState(0);
   const tabs = useRef<Array<HTMLButtonElement | null>>([]);

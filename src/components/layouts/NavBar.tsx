@@ -13,7 +13,6 @@ interface StyledHeaderProps {
   mounted: boolean,
 }
 
-// <StyledHeaderProps>`
 const StyledHeader = styled.header<StyledHeaderProps>`
   ${({ theme }) => theme.flexBetween };
   position: fixed;
@@ -65,14 +64,18 @@ const StyledNavigationList = styled.div`
   }
 `;
 
-const NavBar = () => {
+interface NavBarProps {
+  isHome: boolean;
+}
+
+const NavBar: React.FC<NavBarProps> = (isHome) => {
   const [scrolledToTop, setScrolledToTop] = useState(true);
-  const [mounted, setMounted] = useState<boolean>(false);
+  const [mounted, setMounted] = useState<boolean>(!isHome);
   const scrollDirection = useScrollDirection({ initialDirection: "down" });
 
-  const timeout = true ? loaderDelay : 0;
-  const fadeClass = true ? 'fade' : '';
-  const fadeDownClass = true ? 'fadedown' : '';
+  const timeout = isHome ? loaderDelay : 0;
+  const fadeClass = isHome ? "fade" : '';
+  const fadeDownClass = isHome ? "fadedown" : '';
   
   useEffect(() => {
     const handleScroll = () => {
@@ -93,7 +96,7 @@ const NavBar = () => {
           {mounted && (
             <CSSTransition classNames={fadeClass} timeout={timeout}>
               <div>
-                <a href='/'>a logo here</a>
+                <a href='/'>Home</a>
               </div>
             </CSSTransition>
           )}
