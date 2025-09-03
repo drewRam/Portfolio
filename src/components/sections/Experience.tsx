@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef, HTMLAttributes } from 'react';
 import styled from 'styled-components';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import { config } from "config";
 import sr from 'utils/sr';
 
 const StyledExperienceSection = styled.section`
     max-width: 700px;
 
-    .inner {
+    .layout {
         display: flex;
 
         @media (max-width: 600px) {
@@ -22,111 +22,112 @@ const StyledExperienceSection = styled.section`
     
     `;
     
-    const StyledTabList = styled.div`
-    position: relative;
-    z-index: 3;
-    width: max-content;
-    padding: 0;
-    margin: 0;
-    list-style: none;
+const StyledTabList = styled.div`
+  position: relative;
+  z-index: 3;
+  width: max-content;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 
-    @media (max-width: 600px) {
-        display: flex;
-        overflow-x: auto;
-        width: calc(100% + 100px);
-        padding-left: 50px;
-        margin-left: -50px;
-        margin-bottom: 30px;
-    }
-
-    @media (max-width: 480px) {
-        width: calc(100% + 50px);
-        padding-left: 25px;
-        margin-left: -25px;
-    }
-
-    li {
-        &:first-of-type {
-            @media (max-width: 600px) {
-                margin-left: 50px;
-            }
-            @media (max-width: 480px) {
-                margin-left: 25px;
-            }
-        }
-        &:last-of-type {
-            @media (max-width: 600px) {
-                padding-right: 50px;
-            }
-            @media (max-width: 480px) {
-                padding-right: 25px;
-            }
-        }
-    }
-  `;
-  
-  type TabButtonProps = {
-      isActive: boolean;
-    } & HTMLAttributes<HTMLDivElement>;
-    
-    const StyledTabButton = styled.button<TabButtonProps>`
-    border: none;
-    background: transparent;
-    width: 100%;
-    margin-right: 10px;
-    padding: 0 20px 2px;
-    height: var(--tab-height);
+  @media (max-width: 600px) {
     display: flex;
-    align-items: center;
-    position: relative;  /* important: allows highlight to stay behind */
-    color: ${({ isActive }) => (isActive ? 'var(--green)' : 'var(--slate)')};
-    font-family: var(--font-mono);
-    font-size: var(--fz-xs);
-    white-space: nowrap;
+    overflow-x: auto;
+    width: calc(100% + 100px);
+    padding-left: 50px;
+    margin-left: -50px;
+    margin-bottom: 30px;
+  }
 
-    &:hover,
-    &:focus {
-        background-color: var(--light-navy);
-    }
+  @media (max-width: 480px) {
+    width: calc(100% + 50px);
+    padding-left: 25px;
+    margin-left: -25px;
+  }
 
-    @media (max-width: 600px) {
-        min-width: 120px;
-        border-left: 0;
-        border-bottom: 2px solid var(--lightest-navy);
-        justify-content: center;
+  li {
+    &:first-of-type {
+      @media (max-width: 600px) {
+          margin-left: 50px;
+      }
+
+      @media (max-width: 480px) {
+          margin-left: 25px;
+      }
     }
+    &:last-of-type {
+      @media (max-width: 600px) {
+          padding-right: 50px;
+      }
+
+      @media (max-width: 480px) {
+          padding-right: 25px;
+      }
+    }
+  }
+`;
+  
+type TabButtonProps = {
+  $isActive: boolean;
+} & HTMLAttributes<HTMLDivElement>;
+    
+const StyledTabButton = styled.button<TabButtonProps>`
+  border: none;
+  background: transparent;
+  width: 100%;
+  margin-right: 10px;
+  padding: 0 20px 2px;
+  height: var(--tab-height);
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: ${({ $isActive }) => ($isActive ? 'var(--green)' : 'var(--slate)')};
+  font-family: var(--font-mono);
+  font-size: var(--fz-xs);
+  white-space: nowrap;
+
+  &:hover, &:focus {
+    background-color: var(--light-navy);
+  }
+
+  @media (max-width: 600px) {
+    min-width: 120px;
+    border-left: 0;
+    border-bottom: 2px solid var(--lightest-navy);
+    justify-content: center;
+  }
 `;
 
 interface HighlightProps {
-  activeTabId: number;
+  $activeTabId: number;
 }
 
 const StyledHighlight = styled.div<HighlightProps>`
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    width: 2px;
-    height: var(--tab-height);
-    border-radius: var(--border-radius);
-    background: var(--green);
-    transform: translateY(calc(${({ activeTabId }) => activeTabId} * var(--tab-height)));
-    transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
-    transition-delay: 0.1s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 2px;
+  height: var(--tab-height);
+  border-radius: var(--border-radius);
+  background: var(--green);
+  transform: translateY(calc(${({ $activeTabId }) => $activeTabId} * var(--tab-height)));
+  transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition-delay: 0.1s;
 
-    @media (max-width: 600px) {
-        top: auto;
-        bottom: 0;
-        width: 100%;
-        max-width: var(--tab-width);
-        height: 2px;
-        margin-left: 50px;
-        transform: translateX(calc(${({ activeTabId }) => activeTabId} * var(--tab-width)));
-    }
+  @media (max-width: 600px) {
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    max-width: var(--tab-width);
+    height: 2px;
+    margin-left: 50px;
+    transform: translateX(calc(${({ $activeTabId }) => $activeTabId} * var(--tab-width)));
+  }
 
-    @media (max-width: 480px) {
-        margin-left: 25px;
-    }
+  @media (max-width: 480px) {
+    margin-left: 25px;
+  }
 `;
 
 const StyledTabPanels = styled.div`
@@ -158,7 +159,7 @@ const StyledTabPanel = styled.div`
     }
   }
 
-  .range {
+  .dates {
     margin-bottom: 25px;
     color: var(--light-slate);
     font-family: var(--font-mono);
@@ -171,7 +172,7 @@ type Job = {
   title: string;
   company: string;
   location: string;
-  range: string;
+  dates: string;
   url: string;
   bullets: string[];
   folder?: string;
@@ -197,8 +198,8 @@ const Experience: React.FC = () => {
       // Sort jobs descending by start date
       const sorted = results.sort(
         (a, b) =>
-          new Date(b.range.split('–')[0].trim()).getTime() -
-          new Date(a.range.split('–')[0].trim()).getTime()
+          new Date(b.dates.split('–')[0].trim()).getTime() -
+          new Date(a.dates.split('–')[0].trim()).getTime()
       );
 
       setJobsData(sorted);
@@ -213,14 +214,14 @@ const Experience: React.FC = () => {
 
   return (
     <StyledExperienceSection id="experience" ref={revealContainer}>
-      <h2 className="numbered-heading">Where I’ve Worked</h2>
+      <h2 className="title-heading">Career Journey</h2>
 
-      <div className="inner">
+      <div className="layout">
         <StyledTabList role="tablist" aria-label="Job tabs">
           {jobsData.map((job, i) => (
             <StyledTabButton
               key={i}
-              isActive={activeTabId === i}
+              $isActive={activeTabId === i}
               onClick={() => setActiveTabId(i)}
               ref={(el) => {(tabs.current[i] = el)}}
               id={`tab-${i}`}
@@ -232,7 +233,7 @@ const Experience: React.FC = () => {
               <span>{job.folder}</span>
             </StyledTabButton>
           ))}
-          <StyledHighlight activeTabId={activeTabId} />
+          <StyledHighlight $activeTabId={activeTabId} />
         </StyledTabList>
 
         <StyledTabPanels>
@@ -267,7 +268,7 @@ const Experience: React.FC = () => {
                   </span>
                 </h3>
 
-                <p className="range">{job.range}</p>
+                <p className="dates">{job.dates}</p>
 
                 <ul>
                   {job.bullets.map((bullet, idx) => (

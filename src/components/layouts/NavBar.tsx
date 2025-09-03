@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { config, NavigationLinks } from 'config';
@@ -8,9 +8,9 @@ import { loaderDelay } from 'utils';
 const { navigationLinks }: { navigationLinks: NavigationLinks[] } = config;
 
 interface StyledHeaderProps {
-  scrollDirection: "up" | "down",
-  scrolledToTop: boolean,
-  mounted: boolean,
+  $scrollDirection: "up" | "down";
+  $scrolledToTop: boolean;
+  $mounted: boolean;
 }
 
 const StyledHeader = styled.header<StyledHeaderProps>`
@@ -36,16 +36,16 @@ const StyledHeader = styled.header<StyledHeaderProps>`
     padding: 0 25px;
   }
 
-  ${({ scrollDirection, scrolledToTop }) =>
-    scrollDirection === "up" && !scrolledToTop && css`
+  ${({ $scrollDirection, $scrolledToTop }) =>
+    $scrollDirection === "up" && !$scrolledToTop && css`
       height: var(--nav-scroll-height);
       transform: translateY(0px);
       background-color: rgba(10, 25, 47, 0.85);
       box-shadow: 0 10px 30px -10px var(--navy-shadow);
     `};
 
-  ${({ scrollDirection, scrolledToTop }) =>
-    scrollDirection === "down" && !scrolledToTop && css`
+  ${({ $scrollDirection, $scrolledToTop }) =>
+    $scrollDirection === "down" && !$scrolledToTop && css`
       height: var(--nav-scroll-height);
       transform: translateY(calc(var(--nav-scroll-height) * -1));
       box-shadow: 0 10px 30px -10px var(--navy-shadow);
@@ -95,15 +95,19 @@ interface NavBarProps {
   isHome: boolean;
 }
 
-const NavBar: React.FC<NavBarProps> = (isHome) => {
+const NavBar: React.FC<NavBarProps> = ({ isHome }) => {
   const [scrolledToTop, setScrolledToTop] = useState(true);
   const [mounted, setMounted] = useState<boolean>(!isHome);
   const scrollDirection = useScrollDirection({ initialDirection: "down" });
-
+  const homeRef = useRef<HTMLDivElement>(null);
+  const navRefs = useRef<React.RefObject<HTMLLIElement>[]>([]);
   const timeout = isHome ? loaderDelay : 0;
   const fadeClass = isHome ? "fade" : '';
   const fadeDownClass = isHome ? "fadedown" : '';
   
+  if (navRefs.current.length !== navigationLinks.length) {
+    navRefs.current = navigationLinks.map((_, i) => navRefs.current[i] ?? React.createRef<HTMLLIElement>());
+  }
   useEffect(() => {
     const handleScroll = () => {
       setScrolledToTop(window.scrollY < 50);
@@ -117,30 +121,28 @@ const NavBar: React.FC<NavBarProps> = (isHome) => {
   }, []);
 
   return (
-    <StyledHeader scrollDirection={scrollDirection} scrolledToTop={scrolledToTop} mounted={mounted}> 
+    <StyledHeader $scrollDirection={scrollDirection} $scrolledToTop={scrolledToTop} $mounted={mounted}> 
       <StyledNavigation>
-        <TransitionGroup component={null}>
-          {mounted && (
-            <CSSTransition classNames={fadeClass} timeout={timeout}>
-              <div>
+        <TransitionGroup component="div">
+          {mounted ? (
+            <CSSTransition nodeRef={homeRef} classNames={fadeClass} timeout={timeout}>
+              <div ref={homeRef}>
                 <a href='/'>Home</a>
               </div>
             </CSSTransition>
-          )}
+          ) : []}
         </TransitionGroup>
         <StyledNavigationList>
-          <ul>
-            <TransitionGroup component={null}>
-              {mounted && 
+            <TransitionGroup component="ul">
+              {mounted ? 
                 navigationLinks.map(({url, name}, i) => (
-                  <CSSTransition key={url} classNames={fadeDownClass} timeout={timeout}>
-                    <li key={i} style={{ transitionDelay: `${(i + 1) * 100}ms` }}>
+                  <CSSTransition key={url} nodeRef={navRefs.current[i]} classNames={fadeDownClass} timeout={timeout}>
+                    <li ref={navRefs.current[i]} style={{ transitionDelay: `${(i + 1) * 100}ms` }}>
                       <a href={url}>{name}</a>
                     </li>
                   </CSSTransition>
-              ))}
+              )) : []}
             </TransitionGroup>
-          </ul>
         </StyledNavigationList>
       </StyledNavigation>
     </StyledHeader>

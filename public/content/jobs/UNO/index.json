@@ -2,7 +2,7 @@
   "title": "Web Developer",
   "company": "University of Nebraska Omaha",
   "location": "Remote",
-  "range": "Oct 2021 – Dec 2022",
+  "dates": "Oct 2021 – Dec 2022",
   "url": "https://www.unomaha.edu/",
   "bullets": [
     "Built and maintained responsive single-page applications in Vue.js and Angular, integrating seamlessly with AWS-hosted RESTful APIs and backend services.",

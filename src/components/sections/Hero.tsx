@@ -3,10 +3,11 @@ import { navDelay, loaderDelay } from "../../utils/index";
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from "styled-components";
 
-const StyledHeroSection = styled.section`
+const HeroWrapper = styled.section`
     ${({ theme }) => theme.flexCenter };
     flex-direction: column;
     align-items: flex-start;
+    gap: 20px;
     min-height: 100vh;
     height: 100vh;
     padding-top: 0;
@@ -30,12 +31,13 @@ const StyledHeroSection = styled.section`
 
     h3 {
         margin-top: 5px;
+        margin-bottom: 25px;
         color: var(--slate);
         line-height: 0.9;
     }
 
     p {
-        margin: 20px 0 0;
+        margin: 0;
         max-width: 540px;
     }
 
@@ -59,14 +61,14 @@ interface HeroItem {
 }
 
 const Hero: React.FC = () => {
-    const [isMounted, setIsMounted] = useState<boolean>(false);
+    const [showHero, setshowHero] = useState<boolean>(false);
     const oneRef = useRef<HTMLDivElement>(null);
     const twoRef = useRef<HTMLDivElement>(null);
     const threeRef = useRef<HTMLDivElement>(null);
     const fourRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const timeout = setTimeout(() => setIsMounted(true), navDelay);
+        const timeout = setTimeout(() => setshowHero(true), navDelay);
         return () => clearTimeout(timeout);
     }, []);
 
@@ -75,31 +77,29 @@ const Hero: React.FC = () => {
         { node: <h2 className="big-heading">Andrew Ramirez.</h2>, ref: twoRef },
         { node: <h3 className="big-heading">Full-stack dev, crafting interactive experiences.</h3>, ref: threeRef },
         { node: (
-            <>
-                <p>
-                    I'm a software engineer and a game developer at heart. I independently create games,
-                    combining programming and animation to craft engaging interactive experiences.
-                    You can check out my work on {' '}
-                    <a href="https://your-itch-io-link" target="_blank" rel="noreferrer">Itch.io</a>{' '}
-                    or visit my{' '}
-                    <a href="https://your-game-dev-site.com" target="_blank" rel="noreferrer">game development website</a>
-                    .
-                </p>
-            </>
+            <p>
+                I'm a software engineer and a game developer at heart. I independently create games,
+                combining programming and animation to craft engaging interactive experiences.
+                You can check out my work on {' '}
+                <a href="https://your-itch-io-link" target="_blank" rel="noreferrer">Itch.io</a>{' '}
+                or visit my{' '}
+                <a href="https://your-game-dev-site.com" target="_blank" rel="noreferrer">game development website</a>
+                .
+            </p>
         ), ref: fourRef }
     ];
 
     return (
-        <StyledHeroSection>
-            <TransitionGroup component={null}>
-            {isMounted &&
+        <HeroWrapper>
+            <TransitionGroup>
+            {showHero ?
                 items.map((item, i) => (
-                <CSSTransition key={i} classNames="fadeup" timeout={loaderDelay}>
-                    <div style={{ transitionDelay: `${i + 1}00ms` }}>{item.node}</div>
+                <CSSTransition key={i} nodeRef={item.ref} classNames="fadeup" timeout={loaderDelay}>
+                    <div ref={item.ref} style={{ transitionDelay: `${i * 100}ms` }}>{item.node}</div>
                 </CSSTransition>
-                ))}
+                )) : null}
             </TransitionGroup>
-        </StyledHeroSection>
+        </HeroWrapper>
     );
 }
 

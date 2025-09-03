@@ -34,6 +34,7 @@ interface ContactPanelProps {
 
 const ContactPanel: React.FC<ContactPanelProps> = ({ children, isHome, orientation }) => {
     const [mounted, setMounted] = useState<Boolean>(!isHome);
+    const nodeRef = React.useRef<HTMLDivElement>(null); // ref for CSSTransition
     
     useEffect(() => {
         if (!isHome) {
@@ -42,14 +43,16 @@ const ContactPanel: React.FC<ContactPanelProps> = ({ children, isHome, orientati
 
         const timeout = setTimeout(() => setMounted(true), loaderDelay);
         return () => clearTimeout(timeout);
-    }, []);
+    }, [isHome]);
 
     return (
         <StyledControlPanel orientation={orientation}>
-            <TransitionGroup component={null}>
+            <TransitionGroup component={React.Fragment}>
                 {mounted && (
-                    <CSSTransition classNames={isHome ? "fade" : ""} timeout={isHome ? loaderDelay : 0}>
-                        {children}
+                    <CSSTransition nodeRef={nodeRef} classNames={isHome ? "fade" : ""} timeout={isHome ? loaderDelay : 0}>
+                        <div ref={nodeRef}>
+                            {children}
+                        </div>
                     </CSSTransition>
                 )}
             </TransitionGroup>

@@ -126,14 +126,6 @@ const StyledProject = styled.li`
         }
     }
 
-    .project-overline {
-        margin: 10px 0;
-        color: var(--green);
-        font-family: var(--font-mono);
-        font-size: var(--fz-xs);
-        font-weight: 400;
-    }
-
     .project-title {
         color: var(--lightest-slate);
         font-size: clamp(24px, 5vw, 28px);
@@ -239,7 +231,7 @@ const StyledProject = styled.li`
                 }
             }
 
-                svg {
+            svg {
                 width: 20px;
                 height: 20px;
             }
@@ -315,7 +307,6 @@ const featuredProjects: Project[] = [
     { ...FlashcardData, cover: FlashcardCover },
     { ...GANData, cover: GANCover },
 ];
-console.log(featuredProjects);
 
 featuredProjects.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
@@ -332,15 +323,14 @@ const Projects: React.FC = () => {
 
     return (
         <section id="projects">
-            <h2 className="numbered-heading" ref={revealTitle}>
-                Some Things I’ve Built
+            <h2 className="title-heading" ref={revealTitle}>
+                Portfolio Highlights
             </h2>
             <StyledProjectsGrid>
                 {featuredProjects.map((project: Project, i: number) => (
                     <StyledProject key={i} ref={(el) => {(revealProjects.current[i] = el)}}>
                     <div className="project-content">
                         <div>
-                            <p className="project-overline">Featured Project</p>
                             <h3 className="project-title">
                                 <a href={project.external ?? "#"}>{project.title}</a>
                             </h3>
@@ -363,9 +353,9 @@ const Projects: React.FC = () => {
                                 )}
                                 {project.external && (
                                     <a
-                                        href={project.external}
-                                        aria-label="External Link"
-                                        className="external"
+                                    href={project.external}
+                                    aria-label="External Link"
+                                    className="external"
                                     >
                                         <Icon name="External" />
                                     </a>
