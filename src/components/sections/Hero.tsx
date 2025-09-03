@@ -1,46 +1,37 @@
 import React, { useState, useEffect, useRef, ReactNode } from "react";
-import { navDelay, loaderDelay } from "../../utils/index";
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { navDelay } from "../../utils/index";
 import styled from "styled-components";
+import MeImage from "../images/Me.jpeg";
 
 const HeroWrapper = styled.section`
     ${({ theme }) => theme.flexCenter };
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
+    flex-direction: row;
+    gap: 50px;
     min-height: 100vh;
-    height: 100vh;
-    padding-top: 0;
+    padding: 0 20px;
 
-    @media (max-height: 700px) and (min-width: 700px), (max-width: 360px) {
-        height: auto;
-        padding-top: var(--nav-height);
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 20px;
     }
 
     h1 {
-        margin: 0 0 30px 4px;
         color: var(--green);
         font-family: var(--font-mono);
         font-size: clamp(var(--fz-sm), 5vw, var(--fz-md));
         font-weight: 400;
+    }
 
-        @media (max-width: 480px) {
-            margin: 0 0 20px 2px;
-        }
+    h2 {
+        font-size: 48px;
     }
 
     h3 {
-        margin-top: 5px;
-        margin-bottom: 25px;
+        font-size: 28px;
+        margin-bottom: 30px;
         color: var(--slate);
         line-height: 0.9;
     }
-
-    p {
-        margin: 0;
-        max-width: 540px;
-    }
-
 
     /* Animation classes */
     .fadeup-enter {
@@ -55,50 +46,119 @@ const HeroWrapper = styled.section`
     }
 `;
 
+const HeroContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        text-align: center
+    }
+`;
+
+const HeroImage = styled.img`
+    width: 400px;
+    height: auto;
+    border-radius: 50%;
+
+    @media (max-width: 768px) {
+        width: 200px;
+    }
+`;
+
+const HeroButtons = styled.div`
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+`;
+
+const Button = styled.a`
+    padding: 16px 20px;
+    border-radius: 35px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.3s ease, color 0.3s ease;
+
+    &:hover {
+        opacity: 0.1;
+    }
+
+    &.primary {
+        background: var(--green);
+        color: var(--dark);
+    }
+
+    &.secondary {
+        background: transparent;
+        border: 1px solid var(--green);
+        color: var(--green);
+    }
+`;
+
 interface HeroItem {
   node: ReactNode;
   ref: React.RefObject<HTMLDivElement | null>;
 }
 
 const Hero: React.FC = () => {
-    const [showHero, setshowHero] = useState<boolean>(false);
+    const [showHero, setShowHero] = useState(false);
     const oneRef = useRef<HTMLDivElement>(null);
     const twoRef = useRef<HTMLDivElement>(null);
     const threeRef = useRef<HTMLDivElement>(null);
     const fourRef = useRef<HTMLDivElement>(null);
 
+    const items: HeroItem[] = [
+        { node: <h1>Hello, I'm</h1>, ref: oneRef },
+        { node: <h2>Andrew Ramirez</h2>, ref: twoRef },
+        { node: <h3>Full-stack Developer</h3>, ref: threeRef },
+        { node: (
+            <HeroButtons>
+                <Button className="primary" href="/Andrew_Ramirez_Resume.pdf" download>
+                    Download CV
+                </Button>
+                <Button className="secondary" href="#contact">
+                    Contact Info
+                </Button>
+            </HeroButtons>
+            ), ref: fourRef
+        }
+    ];
+
+    // Show hero after navDelay
     useEffect(() => {
-        const timeout = setTimeout(() => setshowHero(true), navDelay);
+        const timeout = setTimeout(() => setShowHero(true), navDelay);
         return () => clearTimeout(timeout);
     }, []);
 
-    const items: HeroItem[] = [
-        { node: <h1>Hello, my name is</h1>, ref: oneRef },
-        { node: <h2 className="big-heading">Andrew Ramirez.</h2>, ref: twoRef },
-        { node: <h3 className="big-heading">Full-stack dev, crafting interactive experiences.</h3>, ref: threeRef },
-        { node: (
-            <p>
-                I'm a software engineer and a game developer at heart. I independently create games,
-                combining programming and animation to craft engaging interactive experiences.
-                You can check out my work on {' '}
-                <a href="https://your-itch-io-link" target="_blank" rel="noreferrer">Itch.io</a>{' '}
-                or visit my{' '}
-                <a href="https://your-game-dev-site.com" target="_blank" rel="noreferrer">game development website</a>
-                .
-            </p>
-        ), ref: fourRef }
-    ];
-
     return (
         <HeroWrapper>
-            <TransitionGroup>
-            {showHero ?
-                items.map((item, i) => (
-                <CSSTransition key={i} nodeRef={item.ref} classNames="fadeup" timeout={loaderDelay}>
-                    <div ref={item.ref} style={{ transitionDelay: `${i * 100}ms` }}>{item.node}</div>
-                </CSSTransition>
-                )) : null}
-            </TransitionGroup>
+            <HeroImage
+                src={MeImage}
+                alt="Hero Image"
+                style={{
+                    opacity: showHero ? 1 : 0,
+                    transform: showHero ? 'translateY(0)' : 'translateY(20px)',
+                    transition: `opacity 300ms ease-out ${0}ms, transform 300ms ease-out ${0}ms`
+                }}
+            />
+            <HeroContent>
+                {items.map((item, i) => (
+                    <div
+                        key={i}
+                        ref={item.ref}
+                        style={{
+                            opacity: showHero ? 1 : 0,
+                            transform: showHero ? 'translateY(0)' : 'translateY(20px)',
+                            transition: `opacity 300ms ease-out ${i * 150 + 150}ms, transform 300ms ease-out ${i * 150 + 150}ms`
+                        }}
+                    >
+                        {item.node}
+                    </div>
+                ))}
+            </HeroContent>
         </HeroWrapper>
     );
 }
