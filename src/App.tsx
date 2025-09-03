@@ -1,11 +1,5 @@
-/**
- * 
- * This project uses CSS/styling adapted from [Brittany Chiang's website](https://github.com/bchiang7).
- * 
- */
-
-import { Layout, Hero, About, Experience, Contact } from 'components';
 import { useLocation } from 'react-router-dom';
+import { Layout, Hero, About, Experience, Contact, Projects } from 'components';
 
 
 const App = () => {
@@ -17,6 +11,7 @@ const App = () => {
         <Hero />
         <About />
         <Experience />
+        <Projects />
         <Contact />
       </main>
     </Layout>

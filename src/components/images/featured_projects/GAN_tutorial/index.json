@@ -1,0 +1,8 @@
+{
+    "title": "GAN Tutorial",
+    "order": 3,
+    "github": "https://github.com/drewRam",
+    "external": "https://github.com/drewRam/GAN_tutorial",
+    "tech": ["Python", "tensorflow", "numpy"],
+    "description": "A tutorial that demonstrates how to write and train a GAN using tensorflow."
+}

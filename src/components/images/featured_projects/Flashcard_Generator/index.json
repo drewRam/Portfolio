@@ -1,0 +1,8 @@
+{
+    "title": "Flashcard Generator",
+    "order": 1,
+    "github": "https://github.com/drewRam",
+    "external": "https://github.com/drewRam/Flashcard_Generator",
+    "tech": ["Python", "LLM"],
+    "description": "Automatically generate flashcards from your PDF files with LLM (ChatGPT) to help you study."
+}
