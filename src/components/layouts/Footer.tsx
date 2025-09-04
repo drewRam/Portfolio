@@ -7,7 +7,7 @@ import styled from "styled-components";
 const StyledFooter = styled.footer`
     ${({ theme }) => theme.flexCenter};
     flex-direction: column;
-    height: "auto";
+    height: auto;
     min-height: 20px;
     padding: 15px;
     text-align: center;
@@ -21,7 +21,7 @@ const StyledSocialLinks = styled.div`
         width: 100%;
         max-width: 270px;
         margin: 0 auto 10px;
-        color: var(--light-slate);
+        color: var(--slate);
     }
 
     ul {
@@ -42,7 +42,7 @@ const StyledSocialLinks = styled.div`
 `;
 
 const StyledCredit = styled.div`
-    color: var(--light-slate);
+    color: var(--slate);
     font-family: var(--font-mono);
     font-size: var(--fz-xxs);
     line-height: 1;
@@ -59,6 +59,7 @@ const StyledCredit = styled.div`
             align-items: center;
             margin: 0 7px;
         }
+            
         svg {
             display: inline-block;
             margin-right: 5px;
@@ -75,14 +76,14 @@ const IconRing = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 2px solid var(--light-slate);
+  border: 2px solid var(--slate); // default border
   background-color: transparent;
   transition: transform 0.2s, border-color 0.2s;
 
   &:hover,
   &:focus {
     transform: translateY(-3px);
-    border-color: var(--slate);
+    border-color: var(--link-hover); // consistent hover
   }
 `;
 

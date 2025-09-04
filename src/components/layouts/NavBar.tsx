@@ -21,7 +21,7 @@ const StyledHeader = styled.header<StyledHeaderProps>`
   padding: 0px 50px;
   width: 100%;
   height: var(--nav-height);
-  background-color: rgba(10, 25, 47, 0.85);
+  background-color: var(--nav-bar-color);
   filter: none !important;
   pointer-events: auto !important;
   user-select: auto !important;
@@ -40,15 +40,15 @@ const StyledHeader = styled.header<StyledHeaderProps>`
     $scrollDirection === "up" && !$scrolledToTop && css`
       height: var(--nav-scroll-height);
       transform: translateY(0px);
-      background-color: rgba(10, 25, 47, 0.85);
-      box-shadow: 0 10px 30px -10px var(--navy-shadow);
+      background-color: var(--nav-bar-color);
+      box-shadow: 0 10px 30px -10px var(--charcoal-shadow);
     `};
 
   ${({ $scrollDirection, $scrolledToTop }) =>
     $scrollDirection === "down" && !$scrolledToTop && css`
       height: var(--nav-scroll-height);
       transform: translateY(calc(var(--nav-scroll-height) * -1));
-      box-shadow: 0 10px 30px -10px var(--navy-shadow);
+      box-shadow: 0 10px 30px -10px var(--charcoal-shadow);
     `};
 `;
 
@@ -56,11 +56,10 @@ const StyledNavigation = styled.nav`
   ${({ theme }) => theme.flexBetween };
   position: relative;
   width: 100%;
-  color: var(--lightest-slate);
+  color: var(--near-white);
   font-family: 'Fira Code', monospace;
   font-family: var(--font-mono);
   z-index: 11;
-  // border: 2px solid black;
 `;
 
 const StyledNavigationList = styled.div`
@@ -76,13 +75,11 @@ const StyledNavigationList = styled.div`
     padding: 0;
     margin: 0;
     list-style: none;
-    // border: 2px solid red;
 
     li {
       margin: 0 5px;
       position: relative;
       font-size: var(--fz-xs);
-      // border: 2px solid green;
 
       a {
         padding: 10px;

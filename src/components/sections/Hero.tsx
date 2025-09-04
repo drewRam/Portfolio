@@ -16,7 +16,7 @@ const HeroWrapper = styled.section`
     }
 
     h1 {
-        color: var(--green);
+        color: var(--near-white);
         font-family: var(--font-mono);
         font-size: clamp(var(--fz-sm), 5vw, var(--fz-md));
         font-weight: 400;
@@ -29,7 +29,7 @@ const HeroWrapper = styled.section`
     h3 {
         font-size: 28px;
         margin-bottom: 30px;
-        color: var(--slate);
+        color: var(--near-white);
         line-height: 0.9;
     }
 
@@ -82,19 +82,26 @@ const Button = styled.a`
     display: inline-block;
     transition: background 0.3s ease, color 0.3s ease;
 
-    &:hover {
-        opacity: 0.1;
+    &.primary {
+        background: var(--orange-accent);
+        color: var(--near-white);
     }
 
-    &.primary {
-        background: var(--green);
-        color: var(--dark);
+    &.primary:hover {
+        background: var(--orange-tint); /* darker orange (adjust if needed) */
+        color: var(--white);
     }
 
     &.secondary {
         background: transparent;
-        border: 1px solid var(--green);
-        color: var(--green);
+        border: 1px solid var(--orange-accent);
+        color: var(--near-white);
+    }
+
+    &.secondary:hover {
+        background: transparent;
+        border-color: var(--orange-tint); 
+        color: var(--white);
     }
 `;
 

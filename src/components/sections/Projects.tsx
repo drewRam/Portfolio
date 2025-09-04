@@ -127,7 +127,7 @@ const StyledProject = styled.li`
     }
 
     .project-title {
-        color: var(--lightest-slate);
+        color: var(--near-white);
         font-size: clamp(24px, 5vw, 28px);
 
         @media (min-width: 768px) {
@@ -135,7 +135,7 @@ const StyledProject = styled.li`
         }
 
         @media (max-width: 768px) {
-            color: var(--white);
+            color: var(--slate);
 
             a {
                 position: static;
@@ -161,7 +161,7 @@ const StyledProject = styled.li`
         padding: 25px;
         border-radius: var(--border-radius);
         background-color: var(--light-navy);
-        color: var(--light-slate);
+        color: var(--near-white);
         font-size: var(--fz-lg);
 
         @media (max-width: 768px) {
@@ -177,11 +177,6 @@ const StyledProject = styled.li`
         a {
             ${({ theme }) => theme.inlineLink};
         }
-
-        strong {
-            color: var(--white);
-            font-weight: normal;
-        }
     }
 
     .project-tech-list {
@@ -195,7 +190,7 @@ const StyledProject = styled.li`
 
         li {
             margin: 0 20px 5px 0;
-            color: var(--light-slate);
+            color: var(--slate);
             font-family: var(--font-mono);
             font-size: var(--fz-xs);
             white-space: nowrap;
@@ -217,7 +212,7 @@ const StyledProject = styled.li`
         position: relative;
         margin-top: 10px;
         margin-left: -10px;
-        color: var(--lightest-slate);
+        color: var(--near-white);
 
         a {
             ${({ theme }) => theme.flexCenter};

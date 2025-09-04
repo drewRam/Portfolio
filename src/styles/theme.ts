@@ -1,9 +1,9 @@
 import { css } from "styled-components";
 
 const button = css`
-    color: var(--green);
+    color: var(--link-color);
     background-color: transparent;
-    border: 1px solid var(--green);
+    border: 1px solid var(--link-color);
     border-radius: var(--border-radius);
     font-size: var(--fz-xs);
     font-family: var(--font-mono);
@@ -14,7 +14,7 @@ const button = css`
 
     &:hover, &:focus-visible {
         outline: none;
-        box-shadow: 4px 4px 0 0 var(--green);
+        box-shadow: 4px 4px 0 0 var(--link-hover);
         transform: translate(-5px, -5px);
     }
 
@@ -51,7 +51,7 @@ const theme = {
         transition: var(--transition);
 
         &:hover, &:focus-visible {
-            color: var(--green);
+            color: var(--link-hover);
             outline: 0;
         }
     `,
@@ -59,23 +59,20 @@ const theme = {
     inlineLink: css`
         display: inline-block;
         position: relative;
-        color: var(--green);
+        color: var(--link-color);
+        text-decoration: none;
         transition: var(--transition);
 
-        &:hover,
-        &:focus-visible {
-            color: var(--green);
-            outline: 0;
-
-            &:after {
-                width: 100%;
-            }
+        &:hover, &:focus-visible {
+            color: var(--link-hover);
+            outline: 0
 
             & > * {
-                color: var(--green) !important;
+                color: var(--link-hover) !important;
                 transition: var(--transition);
             }
         }
+
         &:after {
             content: '';
             display: block;
@@ -83,18 +80,17 @@ const theme = {
             height: 1px;
             position: relative;
             bottom: 0.37em;
-            background-color: var(--green);
+            background-color: var(--link-hover);
             opacity: 0.5;
         }
     `,
 
     boxShadow: css`
-        box-shadow: 0 10px 30px -15px var(--navy-shadow);
+        box-shadow: 0 10px 30px -15px var(--charcoal-shadow);
         transition: var(--transition);
 
-        &:hover,
-        &:focus-visible {
-        box-shadow: 0 20px 30px -15px var(--navy-shadow);
+        &:hover, &:focus-visible {
+            box-shadow: 0 20px 30px -15px var(--charcoal-shadow);
         }
     `,
 
@@ -105,53 +101,32 @@ const theme = {
         font-size: var(--fz-lg);
 
         li {
-        position: relative;
-        padding-left: 30px;
-        margin-bottom: 10px;
-        &:before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--green);
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            
+            &:before {
+                content: '▹';
+                position: absolute;
+                left: 0;
+                color: var(--link-color);
+            }
         }
-    }
   `,
 
-    bigButton: css`
-        color: var(--green);
-        background-color: transparent;
-        border: 1px solid var(--green);
-        border-radius: var(--border-radius);
-        padding: 1.25rem 1.75rem;
-        font-size: var(--fz-sm);
-        font-family: var(--font-mono);
-        line-height: 1;
-        text-decoration: none;
-        transition: var(--transition);
-
-        &:hover,
-        &:focus-visible {
-            outline: none;
-            box-shadow: 4px 4px 0 0 var(--green);
-            transform: translate(-5px, -5px);
-        }
-        &:after {
-            display: none !important;
-        }
-    `,
-
+  
     resetList: css`
         list-style: none;
         padding: 0;
         margin: 0;
     `,
-
+  
     button,
-
+    
     smallButton: css`
-        color: var(--green);
+        color: var(--link-color);
         background-color: transparent;
-        border: 1px solid var(--green);
+        border: 1px solid var(--link-color);
         border-radius: var(--border-radius);
         padding: 0.75rem 1rem;
         font-size: var(--fz-xs);
@@ -159,13 +134,36 @@ const theme = {
         line-height: 1;
         text-decoration: none;
         transition: var(--transition);
-
+        
         &:hover, &:focus-visible {
             outline: none;
-            box-shadow: 3px 3px 0 0 var(--green);
+            box-shadow: 3px 3px 0 0 var(--link-hover);
             transform: translate(-4px, -4px);
         }
             
+        &:after {
+            display: none !important;
+        }
+    `,
+
+    bigButton: css`
+        color: var(--white);
+        background-color: transparent;
+        border: 1px solid var(--orange-accent);
+        border-radius: var(--border-radius);
+        padding: 1.25rem 1.75rem;
+        font-size: var(--fz-sm);
+        font-family: var(--font-mono);
+        line-height: 1;
+        text-decoration: none;
+        transition: var(--transition);
+    
+        &:hover, &:focus-visible {
+            outline: none;
+            box-shadow: 4px 4px 0 0 var(--orange-accent);
+            transform: translate(-5px, -5px);
+        }
+    
         &:after {
             display: none !important;
         }

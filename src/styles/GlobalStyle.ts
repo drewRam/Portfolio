@@ -25,8 +25,8 @@ const GlobalStyle = createGlobalStyle`
     }
 
     ::selection {
-        background-color: var(--lightest-navy);
-        color: var(--lightest-slate);
+        background-color: var(--charcoal-blue-gray);
+        color: var(--near-white);
     }
 
     body {
@@ -36,7 +36,7 @@ const GlobalStyle = createGlobalStyle`
         overflow-x: hidden;
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
-        background-color: var(--navy);
+        background-color: var(--charcoal-blue-gray);
         color: var(--slate);
         font-family: var(--font-sans);
         line-height: 1.3;
@@ -65,7 +65,7 @@ const GlobalStyle = createGlobalStyle`
         }
     }
 
-     /* Scrollbar Styles */
+    // Scrollbar Styles
     html {
         scrollbar-width: thin;
         scrollbar-color: var(--dark-slate) var(--navy);
@@ -145,7 +145,7 @@ const GlobalStyle = createGlobalStyle`
     h1, h2, h3, h4, h5, h6 {
         margin: 0 0 10px 0;
         font-weight: 600;
-        color: var(--lightest-slate);
+        color: var(--near-white);
     }
 
     .big-heading {
@@ -162,7 +162,7 @@ const GlobalStyle = createGlobalStyle`
         transition: var(--transition);
 
         &:hover, &:focus {
-            color: var(--green);
+            color: var(--link-hover);
         }
 
         &.inline-link {
@@ -173,8 +173,7 @@ const GlobalStyle = createGlobalStyle`
     p {
         margin: 0 0 15px 0;
 
-        &:last-child,
-        &:last-of-type {
+        &:last-child, &:last-of-type {
             margin: 0;
         }
 
@@ -212,7 +211,7 @@ const GlobalStyle = createGlobalStyle`
             flex: 1;
             margin-top: 10px;
             height: 1px;
-            background-color: var(--lightest-navy);
+            background-color: rgba(51, 154, 240, 1); // link-hover color
             margin-left: 20px;
         }
     }

@@ -5,22 +5,22 @@ import { config } from "config";
 import sr from 'utils/sr';
 
 const StyledExperienceSection = styled.section`
-    max-width: 700px;
+  max-width: 700px;
 
-    .layout {
-        display: flex;
+  .layout {
+    display: flex;
 
-        @media (max-width: 600px) {
-            display: block;
-        }
-
-        // Prevent container from jumping
-        @media (min-width: 700px) {
-            min-height: 340px;
-        }
+    @media (max-width: 600px) {
+        display: block;
     }
+
+    // Prevent container from jumping
+    @media (min-width: 700px) {
+        min-height: 340px;
+    }
+  }
     
-    `;
+`;
     
 const StyledTabList = styled.div`
   position: relative;
@@ -55,6 +55,7 @@ const StyledTabList = styled.div`
           margin-left: 25px;
       }
     }
+
     &:last-of-type {
       @media (max-width: 600px) {
           padding-right: 50px;
@@ -81,19 +82,20 @@ const StyledTabButton = styled.button<TabButtonProps>`
   display: flex;
   align-items: center;
   position: relative;
-  color: ${({ $isActive }) => ($isActive ? 'var(--green)' : 'var(--slate)')};
+  color: ${({ $isActive }) => ($isActive ? 'var(--link-color)' : 'var(--slate)')};
   font-family: var(--font-mono);
   font-size: var(--fz-xs);
   white-space: nowrap;
 
   &:hover, &:focus {
-    background-color: var(--light-navy);
+    color: var(--link-color);
+    background-color: var(--link-lighter-hover);
   }
 
   @media (max-width: 600px) {
     min-width: 120px;
     border-left: 0;
-    border-bottom: 2px solid var(--lightest-navy);
+    border-bottom: 2px solid rgba(51, 154, 240, 1);
     justify-content: center;
   }
 `;
@@ -110,7 +112,7 @@ const StyledHighlight = styled.div<HighlightProps>`
   width: 2px;
   height: var(--tab-height);
   border-radius: var(--border-radius);
-  background: var(--green);
+  background: var(--link-hover);
   transform: translateY(calc(${({ $activeTabId }) => $activeTabId} * var(--tab-height)));
   transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
   transition-delay: 0.1s;
@@ -155,13 +157,13 @@ const StyledTabPanel = styled.div`
     line-height: 1.3;
 
     .company {
-      color: var(--green);
+      color: var(--link-color);
     }
   }
 
   .dates {
     margin-bottom: 25px;
-    color: var(--light-slate);
+    color: var(--slate);
     font-family: var(--font-mono);
     font-size: var(--fz-xs);
   }
