@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { config } from "config";
 import sr from "utils/sr";
+import MeImage from "../images/of_myself/Me.jpg"
 
 const AboutWrapper = styled.section`
     max-width: 900px;
@@ -56,7 +57,7 @@ const About: React.FC = () => {
                     </p>
                 </div>
                 <StyledSelfPortrait>
-                    <img src={require("../images/Me.jpeg")} alt="Headshot" width={350} />
+                    <img src={MeImage} alt="Headshot" width={350} />
                 </StyledSelfPortrait>
             </div>
         </AboutWrapper>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, ReactNode } from "react";
 import { navDelay } from "../../utils/index";
 import styled from "styled-components";
-import MeImage from "../images/Me.jpeg";
+import MeImage from "../images/of_myself/SelfPortrait.jpg";
 
 const HeroWrapper = styled.section`
     ${({ theme }) => theme.flexCenter };
@@ -69,7 +69,7 @@ const HeroImage = styled.img`
 
 const HeroButtons = styled.div`
     display: flex;
-    gap: 20px;
+    gap: 25px;
     justify-content: center;
 `;
 
@@ -123,8 +123,8 @@ const Hero: React.FC = () => {
         { node: <h3>Full-stack Developer</h3>, ref: threeRef },
         { node: (
             <HeroButtons>
-                <Button className="primary" href="/Andrew_Ramirez_Resume.pdf" download>
-                    Download CV
+                <Button className="primary" href="/content/static/Andrew_Ramirez_Resume.pdf" download>
+                    Download Resume
                 </Button>
                 <Button className="secondary" href="#contact">
                     Contact Info

@@ -4,7 +4,6 @@ import Icon from "components/icons/IconSelector";
 import sr from "utils/sr";
 import { config } from "config";
 
-// Import your JSON + images manually
 import murmurData from "../../components/images/featured_projects/Murmur/index.json";
 import murmurCover from "../../components/images/featured_projects/Murmur/cover.png";
 import FlashcardData from "../../components/images/featured_projects/Flashcard_Generator/index.json"
