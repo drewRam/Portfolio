@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef, ReactNode } from "react";
-import { navDelay } from "../../utils/index";
 import styled from "styled-components";
 import MeImage from "../images/of_myself/SelfPortrait.jpg";
 
 const HeroWrapper = styled.section`
-    ${({ theme }) => theme.flexCenter };
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: row;
     gap: 50px;
     min-height: 100vh;
@@ -134,9 +135,9 @@ const Hero: React.FC = () => {
         }
     ];
 
-    // Show hero after navDelay
+    // Show hero after navigation delay
     useEffect(() => {
-        const timeout = setTimeout(() => setShowHero(true), navDelay);
+        const timeout = setTimeout(() => setShowHero(true), 1000);
         return () => clearTimeout(timeout);
     }, []);
 

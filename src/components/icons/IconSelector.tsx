@@ -1,8 +1,8 @@
-import React from 'react';
-import { IconGitHub, IconStar, IconFork, IconLinkedin, IconExternal  } from './Icons';
+import React from "react";
+import { IconGitHub, IconStar, IconFork, IconLinkedin, IconExternal  } from "./Icons";
 
 interface IconProps {
-  name: string;
+	name: string;
 }
 
 const IconMap: Record<string, React.FC> = {
@@ -14,8 +14,8 @@ const IconMap: Record<string, React.FC> = {
 };
 
 const Icon: React.FC<IconProps> = ({ name }) => {
-  const Component = IconMap[name];
-  return Component ? <Component /> : null;
+	const Component = IconMap[name];
+	return Component ? <Component /> : null;
 };
 
 export default Icon;

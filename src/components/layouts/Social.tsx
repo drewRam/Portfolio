@@ -4,46 +4,47 @@ import { config } from "config";
 import { ContactPanel, Icon } from "components";
 
 const StyledSocialList = styled.ul`
-    display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0;
+	padding: 0;
+	list-style: none;
 
-  &:after {
-    content: '';
-    display: block;
-    width: 1px;
-    height: 90px;
-    margin: 0 auto;
-    background-color: var(--white);
-  }
+	&:after {
+		content: '';
+		display: block;
+		width: 1px;
+		height: 90px;
+		margin: 0 auto;
+		background-color: var(--white);
+	}
 
-  li {
-    &:last-of-type {
-        margin-bottom: 20px;
-    }
-  }
+	li {
+		&:last-of-type {
+			margin-bottom: 20px;
+		}
+	}
 
-  a {
-    padding: 10px;
-    transition: transform 0.2s;
+	a {
+		padding: 10px;
+		transition: transform 0.2s;
 
-    &:hover,
-    &:focus {
-      transform: translateY(-3px); // smooth lift effect
-    }
+		&:hover, &:focus {
+			transform: translateY(-3px); // smooth lift effect
+		}
 
-    svg {
-      width: 20px;
-      height: 20px;
-    }
-  }
+		svg {
+			width: 20px;
+			height: 20px;
+		}
+	}
 `;
 
 const IconRing = styled.div`
-    ${({theme}) => theme.flexCenter}
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -52,14 +53,14 @@ const IconRing = styled.div`
     transition: transform 0.2s, border-color 0.2s;
 
     &:hover, &:focus {
-        transform: translateY(-3px);
+		transform: translateY(-3px);
         border-color: var(--link-hover); // change ring color on hover
     }
 `;
 
 
 interface SocialProps {
-  isHome: boolean;
+	isHome: boolean;
 }
 
 const Social: React.FC<SocialProps> = ({ isHome }) => (

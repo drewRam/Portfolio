@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Icon from "components/icons/IconSelector";
-import sr from "utils/sr";
+import ScrollRevealed from "utils/sr";
 import { config } from "config";
 
 import murmurData from "../../components/images/featured_projects/Murmur/index.json";
@@ -13,11 +13,22 @@ import GANCover from "../../components/images/featured_projects/GAN_tutorial/cov
 
 
 const StyledProjectsGrid = styled.ul`
-    ${({ theme }) => theme.resetList};
+    list-style: none;
+    padding: 0;
+    margin: 0;
 
     a {
         position: relative;
         z-index: 1;
+    }
+`;
+
+const boxShadow = css`
+    box-shadow: 0 10px 30px -15px var(--charcoal-shadow);
+    transition: var(--transition);
+
+    &:hover, &:focus-visible {
+        box-shadow: 0 20px 30px -15px var(--charcoal-shadow);
     }
 `;
 
@@ -29,7 +40,7 @@ const StyledProject = styled.li`
     align-items: center;
 
     @media (max-width: 768px) {
-        ${({ theme }) => theme.boxShadow};
+        ${boxShadow};
     }
 
     &:not(:last-of-type) {
@@ -154,7 +165,7 @@ const StyledProject = styled.li`
     }
 
     .project-description {
-        ${({ theme }) => theme.boxShadow};
+        ${boxShadow};
         position: relative;
         z-index: 2;
         padding: 25px;
@@ -174,7 +185,32 @@ const StyledProject = styled.li`
         }
 
         a {
-            ${({ theme }) => theme.inlineLink};
+            display: inline-block;
+            position: relative;
+            color: var(--link-color);
+            text-decoration: none;
+            transition: var(--transition);
+
+            &:hover, &:focus-visible {
+                color: var(--link-hover);
+                outline: 0
+
+                & > * {
+                    color: var(--link-hover) !important;
+                    transition: var(--transition);
+                }
+            }
+
+            &:after {
+                content: '';
+                display: block;
+                width: 0;
+                height: 1px;
+                position: relative;
+                bottom: 0.37em;
+                background-color: var(--link-hover);
+                opacity: 0.5;
+            }
         }
     }
 
@@ -214,7 +250,9 @@ const StyledProject = styled.li`
         color: var(--near-white);
 
         a {
-            ${({ theme }) => theme.flexCenter};
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 10px;
 
             &.external {
@@ -233,7 +271,7 @@ const StyledProject = styled.li`
     }
 
     .project-image {
-        ${({ theme }) => theme.boxShadow};
+        ${boxShadow};
         grid-column: 6 / -1;
         grid-row: 1 / -1;
         position: relative;
@@ -309,9 +347,9 @@ const Projects: React.FC = () => {
     const revealProjects = useRef<(HTMLLIElement | null)[]>([]);
     
     useEffect(() => {
-        sr!.reveal(revealTitle.current!, config.srConfig());
+        ScrollRevealed!.reveal(revealTitle.current!, config.srConfig());
         revealProjects.current.forEach((ref, i) => {
-            sr!.reveal(ref!, config.srConfig(i * 100))
+            ScrollRevealed!.reveal(ref!, config.srConfig(i * 100))
         });
     }, []);
 

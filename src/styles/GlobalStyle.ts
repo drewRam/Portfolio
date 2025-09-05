@@ -1,12 +1,12 @@
 import { createGlobalStyle } from "styled-components";
 import variables from "./variables";
-import theme from "./theme";
+// import theme from "./theme";
 import transitionStyles from "./transitionStyles";
 
-declare module "styled-components" {
-  export type ThemeType = typeof theme;
-  export interface DefaultTheme extends ThemeType {}
-}
+// declare module "styled-components" {
+//     export type ThemeType = typeof theme;
+//     export interface DefaultTheme extends ThemeType {}
+// }
 
 const GlobalStyle = createGlobalStyle`
     ${ variables };
@@ -110,22 +110,6 @@ const GlobalStyle = createGlobalStyle`
         @media (max-width: 480px) {
             padding: 125px 25px;
         }
-
-        &.fillHeight {
-            padding: 0 150px;
-
-            @media (max-width: 1080px) {
-                padding: 0 100px;
-            }
-
-            @media (max-width: 768px) {
-                padding: 0 50px;
-            }
-
-            @media (max-width: 480px) {
-                padding: 0 25px;
-            }
-        }
     }
 
     section {
@@ -148,11 +132,6 @@ const GlobalStyle = createGlobalStyle`
         color: var(--near-white);
     }
 
-    .big-heading {
-        margin: 0;
-        font-size: clamp(40px, 8vw, 80px);
-    }
-
     a {
         display: inline-block;
         text-decoration: none;
@@ -166,7 +145,32 @@ const GlobalStyle = createGlobalStyle`
         }
 
         &.inline-link {
-            ${({ theme }) => theme.inlineLink};
+            display: inline-block;
+            position: relative;
+            color: var(--link-color);
+            text-decoration: none;
+            transition: var(--transition);
+
+            &:hover, &:focus-visible {
+                color: var(--link-hover);
+                outline: 0
+
+                & > * {
+                    color: var(--link-hover) !important;
+                    transition: var(--transition);
+                }
+            }
+
+            &:after {
+                content: '';
+                display: block;
+                width: 0;
+                height: 1px;
+                position: relative;
+                bottom: 0.37em;
+                background-color: var(--link-hover);
+                opacity: 0.5;
+            }
         }
     }
 
@@ -178,7 +182,32 @@ const GlobalStyle = createGlobalStyle`
         }
 
         & > a {
-            ${({ theme }) => theme.inlineLink};
+            display: inline-block;
+            position: relative;
+            color: var(--link-color);
+            text-decoration: none;
+            transition: var(--transition);
+
+            &:hover, &:focus-visible {
+                color: var(--link-hover);
+                outline: 0
+
+                & > * {
+                    color: var(--link-hover) !important;
+                    transition: var(--transition);
+                }
+            }
+
+            &:after {
+                content: '';
+                display: block;
+                width: 0;
+                height: 1px;
+                position: relative;
+                bottom: 0.37em;
+                background-color: var(--link-hover);
+                opacity: 0.5;
+            }
         }
 
         & > code {
@@ -190,12 +219,7 @@ const GlobalStyle = createGlobalStyle`
         }
     }
 
-    button {
-        cursor: pointer;
-        border: 0;
-        border-radius: 0;
-    }
-
+    // Title for sections
     .title-heading {
         display: flex;
         align-items: center;
@@ -206,6 +230,7 @@ const GlobalStyle = createGlobalStyle`
         white-space: nowrap;
         padding-bottom: 20px;
 
+        // The css line after title
         &:after {
             content: '';
             flex: 1;

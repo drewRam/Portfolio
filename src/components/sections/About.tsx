@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { config } from "config";
-import sr from "utils/sr";
+import ScrollRevealed from "utils/sr";
 import MeImage from "../images/of_myself/Me.jpg"
 
 const AboutWrapper = styled.section`
@@ -32,7 +32,7 @@ const About: React.FC = () => {
     const revealContainer = useRef(null);
   
     useEffect(() => {
-        sr!.reveal(revealContainer.current!, config.srConfig());
+        ScrollRevealed!.reveal(revealContainer.current!, config.srConfig());
     }, []);
 
     return (
@@ -52,8 +52,8 @@ const About: React.FC = () => {
                     <p>
                         I’m a software engineer and a game developer at heart. I independently create games, combining programming, animation, and storytelling to craft engaging interactive experiences. 
                         You can check out my projects on{' '}
-                        <a href="https://your-itch-io-link" target="_blank" rel="noreferrer">Itch.io</a> or explore more on my{' '}
-                        <a href="https://your-game-dev-site.com" target="_blank" rel="noreferrer">game development website</a>.
+                        <a href="https://displacementgamedev.itch.io/" target="_blank" rel="noreferrer">Itch.io</a> or explore more on my{' '}
+                        <a href="https://displacementgaming.com/" target="_blank" rel="noreferrer">game development website</a>.
                     </p>
                 </div>
                 <StyledSelfPortrait>

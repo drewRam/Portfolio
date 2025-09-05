@@ -1,10 +1,9 @@
 import React, { ReactNode, useState, useEffect } from "react";
 import styled from "styled-components";
-import { loaderDelay } from "utils";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 interface StyledControlPanelProps {
-  orientation: 'left' | 'right';
+    orientation: 'left' | 'right';
 }
 
 const StyledControlPanel = styled.div<StyledControlPanelProps>`
@@ -41,7 +40,7 @@ const ContactPanel: React.FC<ContactPanelProps> = ({ children, isHome, orientati
             return;
         }
 
-        const timeout = setTimeout(() => setMounted(true), loaderDelay);
+        const timeout = setTimeout(() => setMounted(true), 2000);
         return () => clearTimeout(timeout);
     }, [isHome]);
 
@@ -49,7 +48,7 @@ const ContactPanel: React.FC<ContactPanelProps> = ({ children, isHome, orientati
         <StyledControlPanel orientation={orientation}>
             <TransitionGroup component={React.Fragment}>
                 {mounted && (
-                    <CSSTransition nodeRef={nodeRef} classNames={isHome ? "fade" : ""} timeout={isHome ? loaderDelay : 0}>
+                    <CSSTransition nodeRef={nodeRef} classNames={isHome ? "fade" : ""} timeout={isHome ? 2000 : 0}>
                         <div ref={nodeRef}>
                             {children}
                         </div>

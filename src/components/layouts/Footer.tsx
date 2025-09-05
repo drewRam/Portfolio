@@ -5,7 +5,9 @@ import Icon from "../icons/IconSelector";
 import styled from "styled-components";
 
 const StyledFooter = styled.footer`
-    ${({ theme }) => theme.flexCenter};
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     height: auto;
     min-height: 20px;
@@ -25,7 +27,9 @@ const StyledSocialLinks = styled.div`
     }
 
     ul {
-        ${({ theme }) => theme.flexBetween};
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         padding: 0;
         margin: 0;
         list-style: none;
