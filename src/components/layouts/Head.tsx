@@ -1,64 +1,87 @@
 import React, { useEffect } from "react";
 
-const Head: React.FC = () => {
-    const defaults = {
-        title: "My Website",
-        description: "This is my awesome React website.",
-        siteUrl: "https://www.mywebsite.com",
-        image: "/default-image.jpg",
-        twitterUsername: "@mytwitter",
-    };
+interface HeadProps {
+    title?: string;
+    description?: string;
+    image?: string;
+    url?: string;
+}
 
-    const url = typeof window !== "undefined" ? window.location.href : defaults.siteUrl;
+const Head: React.FC<HeadProps> = ({
+    title = "My Website",
+    description = "This is my awesome React website.",
+    image = "/default-image.jpg",
+    url,
+    }) => {
+    const siteUrl = "https://www.mywebsite.com";
+    const fullUrl = typeof window !== "undefined" ? window.location.href : url || siteUrl;
+    const imageUrl = `${siteUrl}${image}`;
 
     useEffect(() => {
-        // Set document title
-        document.title = defaults.title;
+        document.title = title;
 
-        // Helper function to set meta by name
         const setMeta = (name: string, content: string) => {
             let element = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement;
-            
             if (!element) {
-                element = document.createElement("meta");
-                element.setAttribute("name", name);
-                document.head.appendChild(element);
+            element = document.createElement("meta");
+            element.setAttribute("name", name);
+            document.head.appendChild(element);
             }
-
             element.setAttribute("content", content);
         };
 
-        // Helper function to set meta by property
         const setProperty = (property: string, content: string) => {
             let element = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement;
-            
             if (!element) {
-                element = document.createElement("meta");
-                element.setAttribute("property", property);
-                document.head.appendChild(element);
+            element = document.createElement("meta");
+            element.setAttribute("property", property);
+            document.head.appendChild(element);
             }
-            
             element.setAttribute("content", content);
         };
 
-        // Standard SEO meta tags
-        setMeta("description", defaults.description);
-        setMeta("image", `${defaults.siteUrl}${defaults.image}`);
-        setProperty("og:title", defaults.title);
-        setProperty("og:description", defaults.description);
-        setProperty("og:image", `${defaults.siteUrl}${defaults.image}`);
-        setProperty("og:url", url);
+        const setLink = (rel: string, href: string) => {
+            let element = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement;
+            if (!element) {
+            element = document.createElement("link");
+            element.setAttribute("rel", rel);
+            document.head.appendChild(element);
+            }
+            element.setAttribute("href", href);
+        };
+
+        const setViewport = () => {
+            let element = document.querySelector('meta[name="viewport"]') as HTMLMetaElement;
+            if (!element) {
+            element = document.createElement("meta");
+            element.setAttribute("name", "viewport");
+            document.head.appendChild(element);
+            }
+            element.setAttribute(
+            "content",
+            "width=device-width, initial-scale=1, maximum-scale=1"
+            );
+        };
+
+        // SEO
+        setMeta("description", description);
+        setMeta("image", imageUrl);
+
+        // Open Graph
+        setProperty("og:title", title);
+        setProperty("og:description", description);
+        setProperty("og:image", imageUrl);
+        setProperty("og:url", fullUrl);
         setProperty("og:type", "website");
 
-        // Twitter cards
-        setMeta("twitter:card", "summary_large_image");
-        setMeta("twitter:creator", defaults.twitterUsername);
-        setMeta("twitter:title", defaults.title);
-        setMeta("twitter:description", defaults.description);
-        setMeta("twitter:image", `${defaults.siteUrl}${defaults.image}`);
-    }, [url,  defaults.description, defaults.image, defaults.siteUrl, defaults.title, defaults.twitterUsername]);
+        // Canonical
+        setLink("canonical", fullUrl);
 
-    return null; // This component does not render anything
+        // Viewport (fix mobile scaling)
+        setViewport();
+    }, [title, description, imageUrl, fullUrl]);
+
+    return null;
 };
 
 export default Head;

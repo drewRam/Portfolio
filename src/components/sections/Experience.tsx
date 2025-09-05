@@ -204,6 +204,7 @@ const Experience: React.FC = () => {
 	const tabs = useRef<Array<HTMLButtonElement | null>>([]);
 	const revealContainer = useRef<HTMLDivElement | null>(null);
 	const [tabHeight, setTabHeight] = useState<number | 'auto'>('auto');
+	const panelsRef = useRef<Array<HTMLDivElement | null>>([]);
 
 	useEffect(() => {
 		async function loadJobs() {
@@ -234,11 +235,26 @@ const Experience: React.FC = () => {
 	}, []);
 
 	useEffect(() => {
-		if (jobsData.length > 0) {
-			const heights = tabs.current.map((tab) => tab?.scrollHeight || 0);
-			setTabHeight(Math.max(...heights));
+		if (activeTabId !== null && panelsRef.current[activeTabId]) {
+			const panel = panelsRef.current[activeTabId];
+			setTabHeight(panel?.scrollHeight || 'auto');
 		}
-	}, [jobsData]);
+	}, [activeTabId, jobsData]);
+
+
+	useEffect(() => {
+		const handleResize = () => {
+			if (window.innerWidth < 600) {
+			setTabHeight('auto');
+			} else if (activeTabId !== null && panelsRef.current[activeTabId]) {
+			setTabHeight(panelsRef.current[activeTabId]?.scrollHeight || 0);
+			}
+		};
+
+		window.addEventListener('resize', handleResize);
+		handleResize(); // call once initially
+		return () => window.removeEventListener('resize', handleResize);
+	}, [activeTabId, jobsData]);
 
 	return (
 		<StyledExperienceSection id="experience" ref={revealContainer}>
@@ -274,6 +290,7 @@ const Experience: React.FC = () => {
 						unmountOnExit
 						>
 							<StyledTabPanel
+  								ref={(el) => {(panelsRef.current[i] = el)}}
 								id={`panel-${i}`}
 								role="tabpanel"
 								tabIndex={activeTabId === i ? 0 : -1}
