@@ -1,6 +1,6 @@
 import React, { ReactNode, useState, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { NavBar, Social, Email, Footer } from "components";
+import { Head, NavBar, Social, Email, Footer } from "components";
 import { GlobalStyle, theme } from "styles";
 import { Location } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children, location }: LayoutProps) => {
     const isHome = location.pathname === '/';
-    const [isLoading, setIsLoading] = useState<Boolean>(isHome);
+    const [isLoading] = useState<Boolean>(isHome);
 
     // Sets target="_blank" rel="noopener noreferrer" on external links
     const handleExternalLinks = () => {
@@ -54,6 +54,8 @@ const Layout: React.FC<LayoutProps> = ({ children, location }: LayoutProps) => {
 
     return (
         <>
+            <Head />
+
             <div id="root">
                 <ThemeProvider theme={theme}>
                     <GlobalStyle />
