@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { Helmet } from "react-helmet";
 
 interface HeadProps {
-    title?: string;
-    description?: string;
-    image?: string;
-    url?: string;
+  title?: string;
+  description?: string;
+  image?: string;
+  url?: string;
 }
 
 const Head: React.FC<HeadProps> = ({
@@ -13,75 +14,37 @@ const Head: React.FC<HeadProps> = ({
     image = "/default-image.jpg",
     url,
     }) => {
-    const siteUrl = "https://www.mywebsite.com";
-    const fullUrl = typeof window !== "undefined" ? window.location.href : url || siteUrl;
+    const siteUrl = "https://www.developedbyandrew.com";
+    const fullUrl =
+    typeof window !== "undefined" ? window.location.href : url || siteUrl;
     const imageUrl = `${siteUrl}${image}`;
 
-    useEffect(() => {
-        document.title = title;
+    return (
+        <Helmet>
+            {/* Title */}
+            <title>{title}</title>
 
-        const setMeta = (name: string, content: string) => {
-            let element = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement;
-            if (!element) {
-            element = document.createElement("meta");
-            element.setAttribute("name", name);
-            document.head.appendChild(element);
-            }
-            element.setAttribute("content", content);
-        };
+            {/* SEO */}
+            <meta name="description" content={description} />
+            <meta name="image" content={imageUrl} />
 
-        const setProperty = (property: string, content: string) => {
-            let element = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement;
-            if (!element) {
-            element = document.createElement("meta");
-            element.setAttribute("property", property);
-            document.head.appendChild(element);
-            }
-            element.setAttribute("content", content);
-        };
+            {/* Open Graph */}
+            <meta property="og:title" content={title} />
+            <meta property="og:description" content={description} />
+            <meta property="og:image" content={imageUrl} />
+            <meta property="og:url" content={fullUrl} />
+            <meta property="og:type" content="website" />
 
-        const setLink = (rel: string, href: string) => {
-            let element = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement;
-            if (!element) {
-            element = document.createElement("link");
-            element.setAttribute("rel", rel);
-            document.head.appendChild(element);
-            }
-            element.setAttribute("href", href);
-        };
+            {/* Canonical */}
+            <link rel="canonical" href={fullUrl} />
 
-        const setViewport = () => {
-            let element = document.querySelector('meta[name="viewport"]') as HTMLMetaElement;
-            if (!element) {
-            element = document.createElement("meta");
-            element.setAttribute("name", "viewport");
-            document.head.appendChild(element);
-            }
-            element.setAttribute(
-            "content",
-            "width=device-width, initial-scale=1, maximum-scale=1"
-            );
-        };
-
-        // SEO
-        setMeta("description", description);
-        setMeta("image", imageUrl);
-
-        // Open Graph
-        setProperty("og:title", title);
-        setProperty("og:description", description);
-        setProperty("og:image", imageUrl);
-        setProperty("og:url", fullUrl);
-        setProperty("og:type", "website");
-
-        // Canonical
-        setLink("canonical", fullUrl);
-
-        // Viewport (fix mobile scaling)
-        setViewport();
-    }, [title, description, imageUrl, fullUrl]);
-
-    return null;
+            {/* Viewport (mobile scaling fix) */}
+            <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+            />
+        </Helmet>
+    );
 };
 
 export default Head;

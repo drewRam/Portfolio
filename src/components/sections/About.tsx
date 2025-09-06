@@ -23,7 +23,6 @@ const StyledSelfPortrait = styled.div`
     max-width: 300px;
 
     @media (max-width: 768px) {
-        margin: 50px auto 0;
         width: 70%;
     }
 `;
