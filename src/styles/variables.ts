@@ -24,7 +24,7 @@ const variables = css`
         --link-lighter-hover: rgba(54, 55, 66, 1);
         
         // Scrollbar
-        --dark-slate: #495670;
+        --dark-slate: rgba(73, 86, 112, 1);
         
         // Navbar
         --nav-bar-color: rgba(37, 38, 47, 0.85); // New nav bar color, slightly transparent

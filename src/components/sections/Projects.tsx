@@ -116,6 +116,7 @@ const StyledProject = styled.li`
         position: relative;
         grid-column: 1 / 7;
         grid-row: 1 / -1;
+        z-index: 5; 
 
         @media (max-width: 1080px) {
             grid-column: 1 / 9;
