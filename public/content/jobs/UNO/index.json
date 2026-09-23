@@ -1,13 +1,13 @@
 {
-  "title": "Web Developer",
+  "title": "Software Engineer",
   "company": "University of Nebraska Omaha",
   "location": "Remote",
-  "dates": "Oct 2021 – Dec 2022",
+  "dates": "Sep 2020 – Dec 2022",
   "url": "https://www.unomaha.edu/",
   "bullets": [
-    "Built and maintained responsive single-page applications in Vue.js and Angular, integrating seamlessly with AWS-hosted RESTful APIs and backend services.",
-    "Developed Node.js-based backend services to handle data processing, authentication, and business logic, improving application scalability.",
-    "Optimized complex SQL queries and database interactions for faster page loads and improved reporting capabilities.",
+    "Contributed to a full-stack student web application using React and TypeScript, developing features that improved campus communication and streamlined students’ daily workflows.",
+    "Developed Python backend services and RESTful APIs integrating application functionality with SQL databases supporting student and university data.",
+    "Implemented workfl ows for assignment management, class scheduling, course enrollment, and student billing through a centralized web application.",
     "Collaborated with UX/UI teams to design interactive prototypes, conduct usability testing, and implement accessible front-end features.",
     "Implemented version control workflows with Git and CI/CD pipelines to streamline deployments."
   ]

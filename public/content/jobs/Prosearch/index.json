@@ -1,13 +1,14 @@
 {
-  "title": "Lead Full Stack",
+  "title": "Software Engineer",
   "company": "Prosearch",
   "location": "Remote",
   "dates": "Jan 2023 – Apr 2025",
   "url": "https://prosearch.com",
   "bullets": [
-    "Architected and delivered scalable, multi-tenant web applications, integrating secure Microsoft Graph API data pipelines with modern front-end experiences in React Typescript.",
-    "Designed and implemented RESTful APIs and microservices in Node.js, optimizing data access and improving response times for high-volume workloads.",
-    "Developed responsive, accessible UI components using React hooks, Context API, and modular styling, ensuring consistent user experiences across platforms.",
-    "Mentored developers through code reviews, technical workshops, and architectural guidance, fostering a high-performing, collaborative engineering culture."
+    "Architected and developed an enterprise workforce intelligence platform using Python, React, TypeScript, SQL, and Microsoft Graph APIs, serving 50+ client environments.",
+    "Engineered Python and Django backend services and RESTful APIs to ingest, normalize, process, and securely expose Microsoft 365 tenant data, integrating NoSQL storage and automated data-processing workflows.",
+    "Developed React and TypeScript interfaces for workforce analytics and enterprise search, enabling users to explore employee, organizational, and communication data through a unified application.",
+    "Designed and optimized large-scale data ingestion and processing pipelines, reducing end-to-end data pipeline latency by 40%.",
+    "Implemented CI/CD workfl ows using Azure DevOps, Docker, and Kubernetes to automate testing and application deployment across production environments."
   ]
 }

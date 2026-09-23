@@ -6,7 +6,7 @@
   "url": "https://www.icpms.com/",
   "bullets": [
     "Created automation scripts and testing tools in Python to validate performance of scientific instrumentation software.",
-    "Designed and implemented a sampling algorithm that improved processing efficiency by 50% over previous iterations.",
-    "Developed test plans, regression test suites, and troubleshooting utilities to improve software quality and reliability."
+    "Designed and implemented a distributed sampling algorithm to replace a bottlenecked sequential process, improving end-to-end data processing effi ciency by 50%.",
+    "Built automated regression test suites and CI tooling in Python across 6 product lines, reducing manual QA time by 40%."
   ]
 }

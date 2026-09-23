@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { config } from "config";
 import ScrollRevealed from "utils/sr";
-import MeImage from "../images/of_myself/Me.jpg"
+import MeImage from "../images/of_myself/Me.jpg";
 
 const AboutWrapper = styled.section`
     max-width: 900px;
@@ -29,7 +29,7 @@ const StyledSelfPortrait = styled.div`
 
 const About: React.FC = () => {
     const revealContainer = useRef(null);
-  
+
     useEffect(() => {
         ScrollRevealed!.reveal(revealContainer.current!, config.srConfig());
     }, []);
@@ -40,19 +40,33 @@ const About: React.FC = () => {
             <div className="bio-section">
                 <div>
                     <p>
-                        Hi, my name is Andrew, and I’m a full-stack developer and game enthusiast. My programming journey began as a kid, playing Resident Evil 2 with my brother — that curiosity turned into a passion for building and problem-solving through code.
+                        Hello, I’m Andrew Ramirez, a software engineer with 7+
+                        years of experience building full-stack applications,
+                        backend services, and data-intensive systems.
                     </p>
                     <p>
-                        Today, I’ve had the privilege of working as a Lead Full Stack Developer at{' '}
-                        <a href="https://prosearch.com" target="_blank" rel="noreferrer">Prosearch</a>, where I’ve architected and delivered scalable web applications. 
-                        I’ve also gained hands-on experience as a Web Developer at the{' '}
-                        <a href="https://unomaha.edu" target="_blank" rel="noreferrer">University of Nebraska at Omaha</a> and through internships, sharpening my skills in React, Node.js, Python, and cloud-based systems.
+                        My experience spans Python, React, TypeScript, SQL, REST
+                        APIs, and cloud infrastructure, with a focus on building
+                        scalable software and solving complex engineering
+                        problems. I’ve worked across enterprise applications,
+                        workforce intelligence platforms, distributed systems,
+                        and data-processing pipelines, including engineering
+                        solutions used across 50+ client environments.
                     </p>
                     <p>
-                        I’m a software engineer and a game developer at heart. I independently create games, combining programming, animation, and storytelling to craft engaging interactive experiences. 
-                        You can check out my projects on{' '}
-                        <a href="https://displacementgamedev.itch.io/" target="_blank" rel="noreferrer">Itch.io</a> or explore more on my{' '}
-                        <a href="https://displacementgaming.com/" target="_blank" rel="noreferrer">game development website</a>.
+                        I’m currently focused on independent software
+                        development, exploring AI and agentic systems while
+                        continuing to build modern applications and deepen my
+                        expertise in algorithms, data structures, and software
+                        architecture.
+                    </p>
+                    <p>
+                        Outside of traditional software development, I’m
+                        passionate about game development and interactive
+                        experiences. I enjoy combining engineering with
+                        creativity to build projects from the ground up and
+                        explore new ways technology can be used to create
+                        engaging experiences.
                     </p>
                 </div>
                 <StyledSelfPortrait>
@@ -61,6 +75,6 @@ const About: React.FC = () => {
             </div>
         </AboutWrapper>
     );
-}
+};
 
 export default About;
