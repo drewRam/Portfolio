@@ -1,0 +1,8 @@
+{
+    "title": "README Agent",
+    "order": 3,
+    "github": "https://github.com/drewRam",
+    "external": "https://github.com/drewRam/README-Agent",
+    "tech": ["React", "TypeScript", "Claude"],
+    "description": "A real agentic loop — Claude picks which files to read, inspects them, and writes a production-ready README from actual source code, not just repo metadata."
+}

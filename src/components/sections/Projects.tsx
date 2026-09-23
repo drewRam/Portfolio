@@ -6,11 +6,10 @@ import { config } from "config";
 
 import murmurData from "../../components/images/featured_projects/Murmur/index.json";
 import murmurCover from "../../components/images/featured_projects/Murmur/cover.png";
-import FlashcardData from "../../components/images/featured_projects/Flashcard_Generator/index.json"
-import FlashcardCover from "../../components/images/featured_projects/Flashcard_Generator/cover.png";
-import GANData from "../../components/images/featured_projects/GAN_tutorial/index.json";
-import GANCover from "../../components/images/featured_projects/GAN_tutorial/cover.gif";
-
+import FlashcardData from "../../components/images/featured_projects/orbit_agent_coding_manager/index.json";
+import FlashcardCover from "../../components/images/featured_projects/orbit_agent_coding_manager/cover.png";
+import GANData from "../../components/images/featured_projects/readme_agent/index.json";
+import GANCover from "../../components/images/featured_projects/readme_agent/cover.png";
 
 const StyledProjectsGrid = styled.ul`
     list-style: none;
@@ -27,7 +26,8 @@ const boxShadow = css`
     box-shadow: 0 10px 30px -15px var(--charcoal-shadow);
     transition: var(--transition);
 
-    &:hover, &:focus-visible {
+    &:hover,
+    &:focus-visible {
         box-shadow: 0 20px 30px -15px var(--charcoal-shadow);
     }
 `;
@@ -346,11 +346,11 @@ featuredProjects.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 const Projects: React.FC = () => {
     const revealTitle = useRef<HTMLHeadingElement | null>(null);
     const revealProjects = useRef<(HTMLLIElement | null)[]>([]);
-    
+
     useEffect(() => {
         ScrollRevealed!.reveal(revealTitle.current!, config.srConfig());
         revealProjects.current.forEach((ref, i) => {
-            ScrollRevealed!.reveal(ref!, config.srConfig(i * 100))
+            ScrollRevealed!.reveal(ref!, config.srConfig(i * 100));
         });
     }, []);
 
@@ -361,51 +361,65 @@ const Projects: React.FC = () => {
             </h2>
             <StyledProjectsGrid>
                 {featuredProjects.map((project: Project, i: number) => (
-                    <StyledProject key={i} ref={(el) => {(revealProjects.current[i] = el)}}>
-                    <div className="project-content">
-                        <div>
-                            <h3 className="project-title">
-                                <a href={project.external ?? "#"}>{project.title}</a>
-                            </h3>
-                            <div className="project-description">
-                                {project.description}
-                            </div>
-                            {project.tech && (
-                                <ul className="project-tech-list">
-                                    {project.tech.map((tech, idx) => (
-                                        <li key={idx}>{tech}</li>
-                                    ))}
-                                </ul>
-                            )}
+                    <StyledProject
+                        key={i}
+                        ref={(el) => {
+                            revealProjects.current[i] = el;
+                        }}
+                    >
+                        <div className="project-content">
+                            <div>
+                                <h3 className="project-title">
+                                    <a href={project.external ?? "#"}>
+                                        {project.title}
+                                    </a>
+                                </h3>
+                                <div className="project-description">
+                                    {project.description}
+                                </div>
+                                {project.tech && (
+                                    <ul className="project-tech-list">
+                                        {project.tech.map((tech, idx) => (
+                                            <li key={idx}>{tech}</li>
+                                        ))}
+                                    </ul>
+                                )}
 
-                            <div className="project-links">
-                                {project.github && (
-                                    <a href={project.github} aria-label="GitHub Link">
-                                        <Icon name="GitHub" />
-                                    </a>
-                                )}
-                                {project.external && (
-                                    <a
-                                    href={project.external}
-                                    aria-label="External Link"
-                                    className="external"
-                                    >
-                                        <Icon name="External" />
-                                    </a>
-                                )}
+                                <div className="project-links">
+                                    {project.github && (
+                                        <a
+                                            href={project.github}
+                                            aria-label="GitHub Link"
+                                        >
+                                            <Icon name="GitHub" />
+                                        </a>
+                                    )}
+                                    {project.external && (
+                                        <a
+                                            href={project.external}
+                                            aria-label="External Link"
+                                            className="external"
+                                        >
+                                            <Icon name="External" />
+                                        </a>
+                                    )}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="project-image">
-                        <a href={project.external ?? project.github ?? "#"}>
-                            <img src={project.cover} alt={project.title} className="img" />
-                        </a>
-                    </div>
+                        <div className="project-image">
+                            <a href={project.external ?? project.github ?? "#"}>
+                                <img
+                                    src={project.cover}
+                                    alt={project.title}
+                                    className="img"
+                                />
+                            </a>
+                        </div>
                     </StyledProject>
                 ))}
             </StyledProjectsGrid>
         </section>
     );
-}
+};
 
 export default Projects;

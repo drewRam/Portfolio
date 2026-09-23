@@ -1,0 +1,8 @@
+{
+    "title": "Orbit - Agent Coding Manager",
+    "order": 1,
+    "github": "https://github.com/drewRam",
+    "external": "https://github.com/drewRam/orbit_agent_coding_manager",
+    "tech": ["Python", "FastAPI", "Pydantic", "LLM", "React", "TypeScript"],
+    "description": "Multi-agent AI orchestration platform that transforms high-level goals into autonomous workflows with dynamic planning, specialized agents, task scheduling, failure recovery, review loops, replanning, and downloadable project artifacts."
+}
